@@ -140,14 +140,14 @@ const FileUpload = ({
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M7 18C4.23858 18 2 15.7614 2 13C2 10.2386 4.23858 8 7 8C7.33962 8 7.67476 8.02858 8 8.08296M14 6C14.3144 6 14.6258 6.02367 14.9311 6.06914C17.2818 6.31019 19 8.28293 19 10.7C19 13.1171 17.2818 15.0898 14.9311 15.3309C14.6258 15.3763 14.3144 15.4 14 15.4"
+                d="M12 16V4M12 4L8 8M12 4L16 8"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M12 12V21M12 12L9 15M12 12L15 15"
+                d="M20 16.5C20 18.9853 17.9853 21 15.5 21H8.5C6.01472 21 4 18.9853 4 16.5"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"

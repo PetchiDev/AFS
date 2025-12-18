@@ -145,3 +145,16 @@ export const NEW_ANALYSIS = {
   USE_PAST_MATTERS: 'Use past matters for attorney scoring'
 };
 
+// Sidebar Labels
+export const SIDEBAR_CONSTANTS = {
+  NEW_ANALYSIS: 'New Analysis',
+  KNOWLEDGE_HUB: 'Knowledge Hub',
+  REPORTS: 'Reports',
+  ATTORNEY_DIRECTORY: 'Attorney Directory',
+  EMAIL_DRAFTS: 'Email Drafts',
+  CUSTOMER_DETAILS: 'Customer Details',
+  HELP_RESOURCES: 'Help & Resources',
+  SETTINGS: 'Settings',
+  ADMIN_PANEL: 'Admin Panel'
+};
+

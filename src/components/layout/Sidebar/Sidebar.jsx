@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useRouterState } from '@tanstack/react-router';
 import { gsap } from 'gsap';
-import { ROUTES } from '@/config/constants';
+import { ROUTES, SIDEBAR_CONSTANTS } from '@/config/constants';
 import LogoIcon from '@/assets/icons/Logo.svg?react';
 import NewAnalysisIcon from '@/assets/icons/NewAnalysis.svg?react';
 import KnowledgeHubIcon from '@/assets/icons/KnowledgeHub.svg?react';
@@ -122,35 +122,35 @@ const Sidebar = ({ activeItem = null }) => {
   const navigationItems = [
     {
       id: 'knowledge-hub',
-      label: 'Knowledge Hub',
+      label: SIDEBAR_CONSTANTS.KNOWLEDGE_HUB,
       icon: KnowledgeHubIcon,
       path: ROUTES.KNOWLEDGE_HUB,
       isPrimary: false
     },
     {
       id: 'reports',
-      label: 'Reports',
+      label: SIDEBAR_CONSTANTS.REPORTS,
       icon: ReportsIcon,
       path: ROUTES.REPORTS,
       isPrimary: false
     },
     {
       id: 'attorney-directory',
-      label: 'Attorney Directory',
+      label: SIDEBAR_CONSTANTS.ATTORNEY_DIRECTORY,
       icon: AttorneyDirectoryIcon,
       path: ROUTES.ATTORNEY_DIRECTORY,
       isPrimary: false
     },
     {
       id: 'email-drafts',
-      label: 'Email Drafts',
+      label: SIDEBAR_CONSTANTS.EMAIL_DRAFTS,
       icon: EmailDraftsIcon,
       path: ROUTES.EMAIL_DRAFTS,
       isPrimary: false
     },
     {
       id: 'customer-details',
-      label: 'Customer Details',
+      label: SIDEBAR_CONSTANTS.CUSTOMER_DETAILS,
       icon: CustomerDetailsIcon,
       path: ROUTES.CUSTOMER_DETAILS,
       isPrimary: false
@@ -160,13 +160,13 @@ const Sidebar = ({ activeItem = null }) => {
   const secondaryItems = [
     {
       id: 'help-resources',
-      label: 'Help & Resources',
+      label: SIDEBAR_CONSTANTS.HELP_RESOURCES,
       icon: HelpResourcesIcon,
       path: ROUTES.HELP_RESOURCES
     },
     {
       id: 'settings',
-      label: 'Settings',
+      label: SIDEBAR_CONSTANTS.SETTINGS,
       icon: SettingsIcon,
       path: ROUTES.SETTINGS
     }
@@ -175,7 +175,7 @@ const Sidebar = ({ activeItem = null }) => {
   const adminItems = [
     {
       id: 'admin-panel',
-      label: 'Admin Panel',
+      label: SIDEBAR_CONSTANTS.ADMIN_PANEL,
       icon: AdminPanelIcon,
       path: ROUTES.ADMIN_PANEL
     }
@@ -236,7 +236,7 @@ const Sidebar = ({ activeItem = null }) => {
           {renderNavItem(
             {
               id: 'new-analysis',
-              label: 'New Analysis',
+              label: SIDEBAR_CONSTANTS.NEW_ANALYSIS,
               icon: NewAnalysisIcon,
               path: ROUTES.NEW_ANALYSIS
             },

@@ -1,0 +1,76 @@
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--color-bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    white-space: nowrap;
+}
+
+.thead {
+    background-color: #F9FAFB;
+}
+
+.th {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: #6B7280;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color var(--transition-fast);
+}
+
+.th:first-child {
+    border-top-left-radius: var(--border-radius);
+}
+
+.th:last-child {
+    border-top-right-radius: var(--border-radius);
+}
+
+.tr {
+    transition: background-color var(--transition-fast);
+}
+
+.tr:last-child .td {
+    border-bottom: none;
+}
+
+.td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+}
+
+/* Specific column styling can be handled via props or additional classes if needed */
+.sortIcon {
+    margin-left: var(--spacing-xs);
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+
+.th:hover .sortIcon {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+
+    .th,
+    .td {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}

@@ -1,9 +1,11 @@
 .app {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  background-color: var(--color-bg-secondary, #F8F9FA);
-  overflow-x: hidden;
+  background-color: #F8FAFC;
+  /* Slate-50 professional off-white */
+  overflow: hidden;
+  /* Important: prevents body scroll */
 }
 
 .mainContent {
@@ -11,19 +13,20 @@
   display: flex;
   flex-direction: column;
   margin-left: 257px;
-  min-height: 100vh;
-  position: relative;
+  /* Sidebar width */
+  height: 100%;
+  overflow: hidden;
+  /* Container doesn't scroll, children do */
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: calc(100% - 257px);
 }
 
 .contentArea {
   flex: 1;
-  padding: 24px;
   overflow-y: auto;
-  margin-top: 80px;
-  height: calc(100vh - 80px);
-  overflow-x: hidden;
+  /* This makes ONLY this area scrollable */
+  padding: 24px;
+  position: relative;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -35,8 +38,6 @@
   }
 
   .contentArea {
-    margin-top: 80px;
-    height: calc(100vh - 80px);
     padding: 20px;
   }
 }
@@ -49,53 +50,53 @@
 
   .contentArea {
     padding: 16px;
-    margin-top: 70px;
-    height: calc(100vh - 70px);
-    width: 100%;
   }
 }
 
 @media (max-width: 640px) {
   .contentArea {
     padding: 14px;
-    margin-top: 65px;
-    height: calc(100vh - 65px);
   }
 }
 
 @media (max-width: 480px) {
   .contentArea {
     padding: 12px;
-    margin-top: 60px;
-    height: calc(100vh - 60px);
   }
 }
 
 @media (max-width: 360px) {
   .contentArea {
     padding: 10px;
-    margin-top: 56px;
-    height: calc(100vh - 56px);
   }
 }
 
 /* Landscape Orientation */
 @media (max-width: 768px) and (orientation: landscape) {
   .contentArea {
-    margin-top: 60px;
-    height: calc(100vh - 60px);
     padding: 12px;
   }
 }
 
-/* Prevent horizontal scroll on mobile */
-@media (max-width: 768px) {
-  .app {
-    overflow-x: hidden;
-  }
-
-  .mainContent {
-    overflow-x: hidden;
-  }
+/* Refined Scrollbar Styling for Content Area */
+.contentArea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
+.contentArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contentArea::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  /* Lighter slate gray for subtlety */
+  border: 2px solid #F8FAFC;
+  /* Padding effect match bg */
+  border-radius: 4px;
+  /* Fully rounded */
+}
+
+.contentArea::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

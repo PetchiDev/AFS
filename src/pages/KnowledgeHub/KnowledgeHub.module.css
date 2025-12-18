@@ -1,22 +1,102 @@
-.container {
-  padding: 24px;
+.pageContainer {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xl);
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .title {
+  font-family: var(--font-family-primary);
   font-size: 24px;
+  /* Matches visuals better than xl */
+  font-weight: 700;
+  color: #111827;
+  /* Darker text for title */
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
+  color: #6B7280;
+  margin: 0;
+}
+
+.actionSection {
+  display: flex;
+  align-items: center;
+}
+
+.viewBtn,
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #E5E7EB;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 16px;
-  color: #1F2937;
+  transition: all 0.2s;
 }
 
-.description {
-  font-size: 16px;
-  color: #6B7280;
+.viewBtn {
+  color: #374151;
+  margin-right: 8px;
 }
 
-.loading {
-  padding: 24px;
-  text-align: center;
-  color: #6B7280;
+.viewBtn:hover {
+  background-color: #F9FAFB;
 }
 
+.deleteBtn {
+  color: #EF4444;
+}
+
+.deleteBtn:hover {
+  background-color: #FEF2F2;
+  border-color: #FECACA;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Add Source Button Specifics if needed beyond common Button */
+.addSourceBtn {
+  background-color: #EE202E !important;
+  /* Force primary color */
+  border-color: #EE202E !important;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .actionSection {
+    width: 100%;
+  }
+
+  .addSourceBtn {
+    width: 100%;
+  }
+}

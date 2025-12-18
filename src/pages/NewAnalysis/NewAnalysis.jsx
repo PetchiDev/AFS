@@ -8,24 +8,7 @@ import FileUpload from '@/components/common/FileUpload';
 import { PRACTICE_AREAS, NEW_ANALYSIS, COLORS } from '@/config/constants';
 import styles from './NewAnalysis.module.css';
 
-const SearchIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M19 19L14.65 14.65"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+import SearchIcon from '@/assets/icons/Search.svg';
 
 const NewAnalysis = () => {
   const [companyName, setCompanyName] = useState('ABC company');
@@ -158,7 +141,7 @@ const NewAnalysis = () => {
             onClick={handleRunAnalysis}
             variant="primary"
             className={styles.runButton}
-            icon={<SearchIcon />}
+            icon={<img src={SearchIcon} alt="Search" style={{ width: 20, height: 20 }} />}
             color={COLORS.PRIMARY}
             textColor={COLORS.WHITE}
             radius="6px"
