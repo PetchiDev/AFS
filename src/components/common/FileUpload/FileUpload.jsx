@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FILE_UPLOAD } from '@/config/constants';
 import styles from './FileUpload.module.css';
+import DeleteIcon from '@/assets/icons/Delete.svg';
 
 const FileUpload = ({
   onFileSelect = null,
@@ -18,6 +19,8 @@ const FileUpload = ({
   radius = null,
   border = null,
   className = '',
+  selectedFile = null,
+  onRemove = null,
   ...rest
 }) => {
   const fileInputRef = useRef(null);
@@ -59,7 +62,7 @@ const FileUpload = ({
   };
 
   const handleClick = () => {
-    if (!disabled && fileInputRef.current) {
+    if (!disabled && fileInputRef.current && !selectedFile) {
       fileInputRef.current.click();
     }
   };
@@ -73,7 +76,7 @@ const FileUpload = ({
   const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    if (!disabled) {
+    if (!disabled && !selectedFile) {
       setIsDragging(true);
     }
   };
@@ -89,10 +92,21 @@ const FileUpload = ({
     event.stopPropagation();
     setIsDragging(false);
 
-    if (disabled) return;
+    if (disabled || selectedFile) return;
 
     const files = event.dataTransfer.files;
     handleFileSelect(files);
+  };
+
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    if (onRemove) {
+      onRemove();
+    }
+    // Clear the input value so the same file can be selected again if needed
+    if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+    }
   };
 
   const inlineStyles = {};
@@ -106,6 +120,7 @@ const FileUpload = ({
     styles.fileUploadContainer,
     isDragging && styles.dragging,
     disabled && styles.disabled,
+    selectedFile && styles.hasFile,
     className
   ].filter(Boolean).join(' ');
 
@@ -125,39 +140,54 @@ const FileUpload = ({
           type="file"
           accept={accept}
           multiple={multiple}
-          disabled={disabled}
+          disabled={disabled || !!selectedFile}
           onChange={handleInputChange}
           className={styles.fileInput}
           aria-label={uploadText}
         />
-        <div className={styles.uploadContent}>
-          <div className={styles.uploadIcon}>
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        
+        {selectedFile ? (
+          <div className={styles.fileDisplay}>
+            <span className={styles.fileName}>{selectedFile.name}</span>
+            <button 
+              type="button" 
+              className={styles.removeButton} 
+              onClick={handleRemove}
+              aria-label="Remove file"
             >
-              <path
-                d="M12 16V4M12 4L8 8M12 4L16 8"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M20 16.5C20 18.9853 17.9853 21 15.5 21H8.5C6.01472 21 4 18.9853 4 16.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+              <img src={DeleteIcon} alt="Remove" />
+            </button>
           </div>
-          <p className={styles.uploadText}>{uploadText}</p>
-          <p className={styles.supportedFormats}>{supportedFormatsText}</p>
-        </div>
+        ) : (
+          <div className={styles.uploadContent}>
+            <div className={styles.uploadIcon}>
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 16V4M12 4L8 8M12 4L16 8"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M20 16.5C20 18.9853 17.9853 21 15.5 21H8.5C6.01472 21 4 18.9853 4 16.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <p className={styles.uploadText}>{uploadText}</p>
+            <p className={styles.supportedFormats}>{supportedFormatsText}</p>
+          </div>
+        )}
       </div>
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>

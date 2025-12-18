@@ -108,27 +108,31 @@ const Dropdown = ({
     return placeholder;
   };
 
-  const inlineStyles = {};
+  // Separate styles for wrapper and inner dropdown
+  const wrapperStyles = {};
+  const innerStyles = {};
 
-  if (width) inlineStyles.width = width;
-  if (height) inlineStyles.height = height;
-  if (top !== null) inlineStyles.top = top;
-  if (left !== null) inlineStyles.left = left;
-  if (radius !== null) inlineStyles.borderRadius = radius;
-  if (borderWidth !== null) inlineStyles.borderWidth = borderWidth;
-  if (border) inlineStyles.border = border;
+  if (width) wrapperStyles.width = width;
+  if (top !== null) wrapperStyles.top = top;
+  if (left !== null) wrapperStyles.left = left;
+  
+  // Apply visual styles to the inner dropdown
+  if (height) innerStyles.height = height;
+  if (radius !== null) innerStyles.borderRadius = radius;
+  if (borderWidth !== null) innerStyles.borderWidth = borderWidth;
+  if (border) innerStyles.border = border;
 
   const containerClasses = [
     styles.dropdownWrapper,
-    disabled && styles.disabled,
     className
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={containerClasses} ref={dropdownRef} style={inlineStyles}>
+    <div className={containerClasses} ref={dropdownRef} style={wrapperStyles}>
       <input type="hidden" name={name} value={selectedValue} />
       <div
         className={`${styles.dropdown} ${isOpen ? styles.open : ''} ${disabled ? styles.disabled : ''}`}
+        style={innerStyles}
         onClick={handleToggle}
         role="button"
         tabIndex={disabled ? -1 : 0}

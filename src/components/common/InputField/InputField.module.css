@@ -14,9 +14,8 @@
 }
 
 .inputField:focus {
-  border-color: #4A90E2;
-  outline: 2px solid #4A90E2;
-  outline-offset: 2px;
+  border-color: var(--color-primary, #EE202E);
+  outline: none;
 }
 
 .inputField:disabled {
@@ -50,8 +49,8 @@
   }
 
   .inputField:focus {
-    outline: 3px solid #4A90E2;
-    outline-offset: 3px;
+    border-color: var(--color-primary, #EE202E);
+    outline: none;
   }
 
   .inputField:required {
@@ -70,8 +69,8 @@
   }
 
   .inputField:focus {
-    outline: 2px solid #4A90E2;
-    outline-offset: 2px;
+    border-color: var(--color-primary, #EE202E);
+    outline: none;
   }
 }
 
@@ -174,7 +173,8 @@
 }
 
 /* High DPI / Retina Displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
   .inputField {
     border-width: 0.5px;
   }
@@ -277,6 +277,7 @@
 .inputField[type="number"]::-webkit-outer-spin-button,
 .inputField[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
@@ -295,4 +296,3 @@
 .inputField[type="search"]::-webkit-search-cancel-button:hover {
   opacity: 1;
 }
-

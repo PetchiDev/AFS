@@ -2,27 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.css';
 
-const Button = ({ 
+const Button = React.forwardRef(({ 
   children, 
   onClick, 
   variant = 'primary', 
-  size = 'medium',
-  disabled = false,
-  loading = false,
-  type = 'button',
-  fullWidth = false,
-  icon = null,
-  icons = null,
-  width = null,
-  height = null,
-  top = null,
-  left = null,
-  radius = null,
-  border = null,
-  color = null,
-  textColor = null,
+  size = 'medium', 
+  disabled = false, 
+  loading = false, 
+  type = 'button', 
+  fullWidth = false, 
+  icon = null, 
+  icons = null, 
+  width = null, 
+  height = null, 
+  top = null, 
+  left = null, 
+  radius = null, 
+  border = null, 
+  color = null, 
+  textColor = null, 
   ...rest 
-}) => {
+}, ref) => {
   const buttonClasses = [
     styles.button,
     styles[variant],
@@ -58,6 +58,7 @@ const Button = ({
 
   return (
     <button
+      ref={ref}
       type={type}
       className={buttonClasses}
       style={Object.keys(inlineStyles).length > 0 ? inlineStyles : undefined}
@@ -75,7 +76,9 @@ const Button = ({
       )}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,

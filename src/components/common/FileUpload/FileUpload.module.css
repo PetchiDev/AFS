@@ -17,6 +17,13 @@
   box-sizing: border-box;
 }
 
+.fileUploadContainer.hasFile {
+  border-style: solid;
+  border-color: #D1D5DB;
+  background-color: #F9FAFB;
+  cursor: default;
+}
+
 .fileUploadContainer:hover {
   border-color: #9CA3AF;
   background-color: #F9FAFB;
@@ -50,6 +57,53 @@
   gap: 12px;
   padding: 24px;
   text-align: center;
+}
+
+.fileDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 24px;
+}
+
+.fileName {
+  font-size: 16px;
+  color: #374151;
+  font-weight: 500;
+  font-family: var(--font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  width: 38px;
+  height: 38px;
+}
+
+.removeButton:hover {
+  background-color: #EF4444;
+}
+
+.removeButton:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.removeButton img {
+  width: 20px;
+  height: 20px;
+  transition: filter 0.2s ease;
 }
 
 .uploadIcon {
@@ -331,7 +385,8 @@
 }
 
 /* High DPI / Retina Displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
   .fileUploadContainer {
     border-width: 1px;
   }
@@ -420,4 +475,3 @@
     color: #60A5FA;
   }
 }
-

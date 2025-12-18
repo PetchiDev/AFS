@@ -68,8 +68,9 @@
   width: 100%;
   max-width: 526.67px;
   height: 44px;
-  border-radius: 6px;
-  border: 1.5px solid var(--color-primary, #EE202E);
+  width: 100%;
+  max-width: 526.67px;
+  height: 44px;
   padding: 0 16px;
   font-size: 14px;
   font-family: var(--font-family-primary);
@@ -92,8 +93,6 @@
   width: 100%;
   max-width: 526.67px;
   height: 44px;
-  border-radius: 6px;
-  border: 1.5px solid var(--color-primary, #EE202E);
 }
 
 .hint {
@@ -104,21 +103,24 @@
 }
 
 .runButton {
-  width: 100%;
-  max-width: 526.67px;
-  height: 44px;
-  border-radius: 6px;
+  width: 527px;
+  max-width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
   background-color: var(--color-primary, #EE202E);
   color: var(--color-text-light, #FFFFFF);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   font-family: var(--font-family-primary);
   margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
   transition: background-color 0.2s ease;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .runButton:hover:not(:disabled) {
@@ -227,3 +229,577 @@
   }
 }
 
+/* Report View Styles */
+.reportContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  display: none;
+  /* Hidden by default */
+  opacity: 0;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary, #65758B);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin-bottom: 24px;
+  font-family: var(--font-family-primary);
+  width: fit-content;
+}
+
+.backButton:hover {
+  color: var(--color-primary, #EE202E);
+}
+
+.reportHeaderCard {
+  width: 100%;
+  padding: 24px;
+  background-color: var(--color-bg-primary, #FFFFFF);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.companyTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary, #212529);
+  margin: 0;
+}
+
+.practiceAreaText {
+  font-size: 14px;
+  color: var(--color-text-secondary, #65758B);
+  margin-top: 4px;
+}
+
+.scoreContainer {
+  text-align: right;
+}
+
+.scoreLabel {
+  font-size: 12px;
+  color: var(--color-text-secondary, #65758B);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.scoreValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-primary, #EE202E);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: var(--color-text-primary, #212529);
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background-color: #F8F9FA;
+}
+
+.primaryActionButton {
+  background-color: var(--color-primary, #EE202E);
+  color: #FFFFFF;
+  border: 1px solid var(--color-primary, #EE202E);
+}
+
+.primaryActionButton:hover {
+  background-color: rgba(238, 32, 46, 0.9);
+}
+
+.reportGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.riskCard,
+.evidenceCard,
+.attorneyCard {
+  background: var(--color-bg-primary, #FFFFFF);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.evidenceCard {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+  margin-bottom: 20px;
+}
+
+.riskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.riskItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--color-text-primary, #212529);
+}
+
+.riskDot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-primary, #EE202E);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.attorneyProfile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.attorneyAvatar {
+  width: 56px;
+  height: 56px;
+  background-color: #F1F5F9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748B;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.attorneyInfo h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary, #212529);
+  margin: 0;
+}
+
+.attorneyInfo p {
+  font-size: 12px;
+  color: var(--color-text-secondary, #65758B);
+  margin: 4px 0 0 0;
+}
+
+.viewProfileButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  /* Correct radius as perceived */
+  color: var(--color-text-primary, #212529);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 12px;
+  font-family: var(--font-family-primary);
+  transition: all 0.2s ease;
+}
+
+.viewProfileButton:hover {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
+}
+
+.draftEmailButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  background-color: var(--color-primary, #EE202E);
+  border: none;
+  /* Explicitly no border */
+  border-radius: 8px;
+  /* Matching radius */
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  transition: background-color 0.2s ease;
+}
+
+.draftEmailButton:hover {
+  background-color: rgba(238, 32, 46, 0.9);
+}
+
+.evidenceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.evidenceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 14px;
+  color: var(--color-text-primary, #212529);
+}
+
+.evidenceItem:last-child {
+  border-bottom: none;
+}
+
+
+/* Responsive Report View */
+@media (max-width: 1024px) {
+  .reportGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .attorneyCard {
+    order: 2;
+    /* Ensure it stays in logical order if needed */
+  }
+
+  .evidenceCard {
+    margin-top: 0;
+    /* Reset margin since it's now in flow */
+  }
+}
+
+@media (max-width: 768px) {
+  .headerTop {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .scoreContainer {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scoreLabel {
+    margin-bottom: 0;
+  }
+
+  .actionButtons {
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .actionButton {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .reportGrid {
+    gap: 16px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actionButton {
+    width: 100%;
+  }
+}
+
+
+
+/* Email Draft View Styles */
+.emailDraftContainer {
+  display: none;
+  /* Hidden by default */
+  opacity: 0;
+  width: 100%;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.emailDraftContent {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.emailEditorCard {
+  background: #FFFFFF;
+  padding: 32px;
+  flex: 2;
+  /* Main content width */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 750px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #F1F5F9;
+}
+
+.sidebar {
+  flex: 1;
+  /* Sidebar width */
+  min-width: 340px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebarCard {
+  background: #FFFFFF;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: 1px solid #F1F5F9;
+}
+
+.sidebarTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary, #212529);
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding-bottom: 12px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.summaryLabel {
+  color: #64748B;
+  font-weight: 500;
+  width: 50%;
+}
+
+.summaryValue {
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+  text-align: right;
+  width: 50%;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  /* Bolder label as per image */
+  color: var(--color-text-primary, #212529);
+  margin-bottom: 8px;
+}
+
+.textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  /* Taller text area */
+  padding: 16px 20px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-family: var(--font-family-primary);
+  font-size: 15px;
+  /* Slightly larger readable text */
+  color: var(--color-text-primary, #212529);
+  resize: none;
+  line-height: 1.6;
+  background-color: #FAFAFA;
+  transition: all 0.2s;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary, #EE202E);
+  background-color: #FFFFFF;
+}
+
+.emailActions {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.secondaryActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  height: 40px;
+  /* Slightly shorter height */
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: fit-content;
+}
+
+.secondaryActionButton:hover {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
+}
+
+.primaryActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  height: 40px;
+  background-color: var(--color-primary, #EE202E);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 120px;
+}
+
+.primaryActionButton:hover {
+  background-color: rgba(238, 32, 46, 0.9);
+}
+
+.pastMatters {
+  font-size: 13px;
+  color: #64748B;
+  margin-top: -4px;
+  /* Pull up closer to profile */
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.viewProfileLinkData {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewProfileLinkData:hover {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+  .emailDraftContent {
+    flex-direction: column;
+  }
+
+  .emailEditorCard {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebarCard {
+    flex: 1;
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    flex-direction: column;
+  }
+
+  .emailActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .secondaryActionButton,
+  .primaryActionButton {
+    width: 100%;
+  }
+}
