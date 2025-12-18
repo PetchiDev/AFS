@@ -1,7 +1,8 @@
 .container {
-  padding: 32px;
+  padding: 0;
   min-height: 100vh;
   background-color: var(--color-bg-secondary, #F8F9FA);
+  width: 100%;
 }
 
 .header {
@@ -562,17 +563,40 @@
 
 /* Email Draft View Styles */
 .emailDraftContainer {
-  display: none;
-  /* Hidden by default */
+  display: flex;
+  flex-direction: column;
   opacity: 0;
   width: 100%;
   animation: fadeIn 0.5s ease-out;
+  padding: 0;
+  background-color: transparent;
+}
+
+.emailDraftContainer .backButton {
+  margin-bottom: 24px;
+}
+
+.emailDraftTitle {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--color-text-primary, #212529);
+  font-family: var(--font-family-primary);
+}
+
+.emailDraftSubtitle {
+  font-size: 16px;
+  color: var(--color-text-secondary, #65758B);
+  font-family: var(--font-family-primary);
+  line-height: 1.5;
+  margin: 0 0 32px 0;
 }
 
 .emailDraftContent {
   display: flex;
   gap: 32px;
   align-items: flex-start;
+  margin-top: 0;
 }
 
 .emailEditorCard {
@@ -583,7 +607,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  min-height: 750px;
+  min-height: 600px;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border: 1px solid #F1F5F9;
@@ -592,8 +616,8 @@
 .sidebar {
   flex: 1;
   /* Sidebar width */
-  min-width: 340px;
-  max-width: 380px;
+  min-width: 320px;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -659,7 +683,7 @@
 .textarea {
   width: 100%;
   height: 100%;
-  min-height: 480px;
+  min-height: 400px;
   /* Taller text area */
   padding: 16px 20px;
   border: 1px solid #E2E8F0;
@@ -668,7 +692,7 @@
   font-size: 15px;
   /* Slightly larger readable text */
   color: var(--color-text-primary, #212529);
-  resize: none;
+  resize: vertical;
   line-height: 1.6;
   background-color: #FAFAFA;
   transition: all 0.2s;
@@ -682,10 +706,11 @@
 
 .emailActions {
   display: flex;
-  gap: 16px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: auto;
   align-items: center;
   flex-wrap: wrap;
+  padding-top: 24px;
 }
 
 .secondaryActionButton {
@@ -721,7 +746,7 @@
   height: 40px;
   background-color: var(--color-primary, #EE202E);
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   color: #FFFFFF;
@@ -757,6 +782,8 @@
   background: #FFFFFF;
   cursor: pointer;
   transition: all 0.2s;
+  margin-top: 16px;
+  margin-bottom: 0;
 }
 
 .viewProfileLinkData:hover {
@@ -764,42 +791,184 @@
   border-color: #CBD5E1;
 }
 
-/* Responsiveness */
+/* Responsiveness for Email Draft */
+@media (max-width: 1440px) {
+  .emailDraftContent {
+    gap: 24px;
+  }
+
+  .emailEditorCard {
+    flex: 1.8;
+  }
+
+  .sidebar {
+    flex: 1;
+    min-width: 300px;
+    max-width: 340px;
+  }
+}
+
 @media (max-width: 1200px) {
   .emailDraftContent {
     flex-direction: column;
+    gap: 24px;
   }
 
   .emailEditorCard {
     width: 100%;
     min-height: auto;
+    flex: none;
   }
 
   .sidebar {
     width: 100%;
     max-width: 100%;
+    min-width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px;
   }
 
   .sidebarCard {
     flex: 1;
-    min-width: 300px;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .emailDraftTitle {
+    font-size: 24px;
+  }
+
+  .emailDraftSubtitle {
+    font-size: 15px;
+  }
+
+  .emailEditorCard {
+    padding: 24px;
+  }
+
+  .sidebarCard {
+    padding: 20px 24px;
   }
 }
 
 @media (max-width: 768px) {
+  .emailDraftContainer .backButton {
+    margin-bottom: 16px;
+  }
+
+  .emailDraftTitle {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .emailDraftSubtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .emailDraftContent {
+    gap: 20px;
+  }
+
+  .emailEditorCard {
+    padding: 20px;
+    min-height: auto;
+  }
+
   .sidebar {
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebarCard {
+    min-width: 100%;
+    padding: 20px;
   }
 
   .emailActions {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .secondaryActionButton,
   .primaryActionButton {
     width: 100%;
+    justify-content: center;
+  }
+
+  .textarea {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emailDraftContainer .backButton {
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+
+  .emailDraftTitle {
+    font-size: 20px;
+  }
+
+  .emailDraftSubtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .emailEditorCard {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .sidebarCard {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .textarea {
+    min-height: 250px;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .emailActions {
+    gap: 10px;
+  }
+
+  .secondaryActionButton,
+  .primaryActionButton {
+    height: 38px;
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .emailDraftTitle {
+    font-size: 18px;
+  }
+
+  .emailDraftSubtitle {
+    font-size: 12px;
+  }
+
+  .emailEditorCard {
+    padding: 12px;
+  }
+
+  .sidebarCard {
+    padding: 12px;
+  }
+
+  .textarea {
+    min-height: 200px;
   }
 }

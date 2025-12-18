@@ -1,22 +1,154 @@
 .container {
-  padding: 24px;
+  padding: 32px;
+  background-color: var(--color-bg-secondary, #F8F9FA);
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 32px;
 }
 
 .title {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 16px;
-  color: #1F2937;
+  color: var(--color-text-primary, #212529);
+  margin-bottom: 8px;
+  font-family: var(--font-family-primary);
 }
 
-.description {
-  font-size: 16px;
-  color: #6B7280;
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary, #64748B);
+  font-family: var(--font-family-primary);
 }
 
-.loading {
-  padding: 24px;
-  text-align: center;
-  color: #6B7280;
+.filtersBar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
+.searchWrapper {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #94A3B8;
+  opacity: 0.7;
+}
+
+.searchInput {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 40px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--font-family-primary);
+  background: #FFFFFF;
+  color: var(--color-text-primary, #212529);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #94A3B8;
+}
+
+.dropdownsWrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.filterDropdown {
+  width: 200px;
+  background: #FFFFFF;
+}
+
+.tableCard {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E2E8F0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Custom Table Styles Overrides via component classes if needed, 
+   but Table component uses its own modules. 
+   We just need to style contents passed to render */
+
+.companyName {
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+}
+
+.confidenceWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressBarBg {
+  width: 100px;
+  height: 6px;
+  background-color: #E2E8F0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.confidenceText {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+  min-width: 32px;
+}
+
+.viewButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: var(--color-primary, #EE202E);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: opacity 0.2s;
+}
+
+.viewButton:hover {
+  opacity: 0.8;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .filtersBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dropdownsWrapper {
+    flex-wrap: wrap;
+  }
+
+  .filterDropdown {
+    flex: 1;
+    min-width: 150px;
+  }
+}

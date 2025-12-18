@@ -158,3 +158,99 @@ export const SIDEBAR_CONSTANTS = {
   ADMIN_PANEL: 'Admin Panel'
 };
 
+// Email Draft Constants
+export const EMAIL_DRAFT = {
+  BACK_TO_DRAFTS: 'Back to Email Drafts',
+  TITLE_PREFIX: 'Email Draft for:',
+  TO_LABEL: 'To:',
+  SUBJECT_LABEL: 'Subject',
+  EMAIL_BODY_LABEL: 'Email Body',
+  COPY_EMAIL: 'Copy Email',
+  SEND_VIA_OUTLOOK: 'Send via Outlook',
+  SAVE_DRAFT: 'Save Draft',
+  COMPANY_SUMMARY: 'Company Summary',
+  KEY_RISKS: 'Key Risks',
+  RECOMMENDED_ATTORNEY: 'Recommended Attorney',
+  NAME_LABEL: 'Name',
+  PRACTICE_AREA_LABEL: 'Practice Area',
+  CONFIDENCE_SCORE_LABEL: 'Confidence Score',
+  PAST_MATTERS_LABEL: 'Past Matters:',
+  VIEW_PROFILE: 'View Profile',
+  DEFAULT_COMPANY_NAME: 'Acme Manufacturing',
+  DEFAULT_RECIPIENT_NAME: 'A.K. Raman',
+  DEFAULT_RECIPIENT_TITLE: 'Partner, Corporate',
+  DEFAULT_SUBJECT: 'Re: Compliance risks identified for Acme Manufacturing',
+  DEFAULT_EMAIL_BODY: `Hi A.K. ABC company,
+
+Our analysis for Acme Manufacturing identified three key compliance-related risks:
+• Environmental permit gaps
+• Supplier contract exposure
+• Potential employee misclassification
+
+Based on your experience with compliance and manufacturing clients, you appear to be the best internal expert to support this matter.
+
+Please let me know if you'd like a meeting arranged.
+
+Regards,
+John`
+};
+
+export const REPORTS_CONSTANTS = {
+  TITLE: 'Reports',
+  SUBTITLE: 'View all past analysis reports.',
+  SEARCH_PLACEHOLDER: 'Search company...',
+  ALL_PRACTICE_AREAS: 'All Practice Areas',
+  VIEW_ACTION: 'View'
+};
+
+export const REPORT_FILTERS = {
+  PRACTICE_AREAS: ['Compliance', 'Corporate', 'Employment', 'Litigation', 'IP'],
+  DATE_RANGES: ['Last 30 days', 'Last 60 days', 'Last 90 days'],
+  SORT_OPTIONS: ['Latest First', 'Oldest First']
+};
+
+export const MOCK_REPORTS_DATA = [
+  {
+    companyName: 'Acme Manufacturing',
+    practiceArea: 'Compliance',
+    date: 'Jan 12, 2024',
+    confidence: 92,
+    id: 1
+  },
+  {
+    companyName: 'NextGen Pharma',
+    practiceArea: 'Corporate',
+    date: 'Jan 10, 2024',
+    confidence: 87,
+    id: 2
+  },
+  {
+    companyName: 'Bluestone Media',
+    practiceArea: 'Employment',
+    date: 'Jan 09, 2024',
+    confidence: 78,
+    id: 3
+  },
+  {
+    companyName: 'Orion Logistics',
+    practiceArea: 'Litigation',
+    date: 'Jan 07, 2024',
+    confidence: 85,
+    id: 4
+  },
+  {
+    companyName: 'TechVentures Inc',
+    practiceArea: 'IP',
+    date: 'Jan 05, 2024',
+    confidence: 91,
+    id: 5
+  },
+  {
+    companyName: 'Global Finance Corp',
+    practiceArea: 'Compliance',
+    date: 'Jan 03, 2024',
+    confidence: 76,
+    id: 6
+  }
+];
+

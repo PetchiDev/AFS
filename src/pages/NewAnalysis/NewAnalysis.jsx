@@ -105,6 +105,7 @@ John`);
   const [includePublicNews, setIncludePublicNews] = useState(true);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [usePastMatters, setUsePastMatters] = useState(true);
+  const [analysisResult, setAnalysisResult] = useState(null);
 
   const handleCompanyNameChange = (event) => {
     setCompanyName(event.target.value);
@@ -147,6 +148,27 @@ John`);
     console.log('Running analysis...', {
       companyName,
       companyEmail
+    });
+
+    // Mock Analysis Result
+    setAnalysisResult({
+      score: 92,
+      risks: [
+        "Environmental compliance gaps",
+        "Supplier contract exposure",
+        "Employee misclassification risk"
+      ],
+      attorney: {
+        name: "A.K. Raman",
+        title: "Partner, Corporate",
+        initials: "AR",
+        pastMatters: 16
+      },
+      evidence: [
+        { label: "Regulatory Filing", action: "View" },
+        { label: "News Article", action: "View" },
+        { label: "Internal Doc", action: "Open" }
+      ]
     });
 
     const tl = gsap.timeline();
@@ -393,6 +415,7 @@ John`);
       </div>
 
       {/* Report View */}
+      {/* Report View */}
       <div ref={reportRef} className={styles.reportContainer}>
         <button className={styles.backButton} onClick={handleBack}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -404,12 +427,12 @@ John`);
         <div className={styles.reportHeaderCard}>
           <div className={styles.headerTop}>
             <div>
-              <h2 className={styles.companyTitle}>ABC company</h2>
-              <p className={styles.practiceAreaText}>Practice Area: compliance</p>
+              <h2 className={styles.companyTitle}>{companyName}</h2>
+              <p className={styles.practiceAreaText}>Practice Area: {practiceArea}</p>
             </div>
             <div className={styles.scoreContainer}>
               <span className={styles.scoreLabel}>Confidence Score</span>
-              <span className={styles.scoreValue}>92%</span>
+              <span className={styles.scoreValue}>{analysisResult?.score || 92}%</span>
             </div>
           </div>
           
@@ -445,28 +468,22 @@ John`);
           <div className={styles.riskCard}>
              <h3 className={styles.sectionTitle}>Key Risk Areas</h3>
              <ul className={styles.riskList}>
-               <li className={styles.riskItem}>
-                 <span className={styles.riskDot}></span>
-                 Environmental compliance gaps
-               </li>
-               <li className={styles.riskItem}>
-                 <span className={styles.riskDot}></span>
-                 Supplier contract exposure
-               </li>
-               <li className={styles.riskItem}>
-                 <span className={styles.riskDot}></span>
-                 Employee misclassification risk
-               </li>
+               {analysisResult?.risks.map((risk, index) => (
+                 <li key={index} className={styles.riskItem}>
+                   <span className={styles.riskDot}></span>
+                   {risk}
+                 </li>
+               ))}
              </ul>
           </div>
 
           <div className={styles.attorneyCard}>
              <h3 className={styles.sectionTitle}>Recommended Attorney</h3>
              <div className={styles.attorneyProfile}>
-               <div className={styles.attorneyAvatar}>AR</div>
+               <div className={styles.attorneyAvatar}>{analysisResult?.attorney?.initials || 'AR'}</div>
                <div className={styles.attorneyInfo}>
-                 <h3>A.K. Raman</h3>
-                 <p>Partner, Corporate</p>
+                 <h3>{analysisResult?.attorney?.name || 'A.K. Raman'}</h3>
+                 <p>{analysisResult?.attorney?.title || 'Partner, Corporate'}</p>
                </div>
              </div>
              
@@ -495,18 +512,12 @@ John`);
           <div className={styles.evidenceCard}>
              <h3 className={styles.sectionTitle}>Supporting Evidence</h3>
              <div className={styles.evidenceList}>
-               <div className={styles.evidenceItem}>
-                 <span>Regulatory Filing</span>
-                 <a href="#" className={styles.viewLink}>[View]</a>
-               </div>
-               <div className={styles.evidenceItem}>
-                 <span>News Article</span>
-                 <a href="#" className={styles.viewLink}>[View]</a>
-               </div>
-               <div className={styles.evidenceItem}>
-                 <span>Internal Doc</span>
-                 <a href="#" className={styles.viewLink}>[Open]</a>
-               </div>
+               {analysisResult?.evidence.map((item, index) => (
+                 <div key={index} className={styles.evidenceItem}>
+                   <span>{item.label}</span>
+                   <a href="#" className={styles.viewLink}>[{item.action}]</a>
+                 </div>
+               ))}
              </div>
           </div>
         </div>
@@ -522,8 +533,8 @@ John`);
                 </svg>
                 Back to Email Drafts
             </button>
-            <h1 className={styles.title} style={{ marginTop: '16px' }}>Email Draft for: Acme Manufacturing</h1>
-            <p className={styles.subtitle}>To: A.K. Raman (Partner, Corporate)</p>
+            <h1 className={styles.title} style={{ marginTop: '16px' }}>Email Draft for: {companyName}</h1>
+            <p className={styles.subtitle}>To: {analysisResult?.attorney?.name || 'A.K. Raman'} ({analysisResult?.attorney?.title || 'Partner, Corporate'})</p>
         </div>
 
         <div className={styles.emailDraftContent}>
@@ -577,46 +588,40 @@ John`);
                     <h3 className={styles.sidebarTitle}>Company Summary</h3>
                     <div className={styles.summaryRow}>
                         <span className={styles.summaryLabel}>Name</span>
-                        <span className={styles.summaryValue}>Acme Manufacturing</span>
+                        <span className={styles.summaryValue}>{companyName}</span>
                     </div>
                     <div className={styles.summaryRow}>
                         <span className={styles.summaryLabel}>Practice Area</span>
-                        <span className={styles.summaryValue}>Compliance</span>
+                        <span className={styles.summaryValue}>{practiceArea}</span>
                     </div>
                     <div className={styles.summaryRow}>
                         <span className={styles.summaryLabel}>Confidence Score</span>
-                        <span className={styles.summaryValue} style={{ color: '#22C55E' }}>92%</span>
+                        <span className={styles.summaryValue} style={{ color: '#22C55E' }}>{analysisResult?.score || 92}%</span>
                     </div>
                 </Card>
 
                 <Card className={styles.sidebarCard} radius="12px">
                     <h3 className={styles.sidebarTitle}>Key Risks</h3>
                     <ul className={styles.riskList}>
-                        <li className={styles.riskItem}>
-                            <span className={styles.riskDot} style={{ backgroundColor: '#EE202E' }}></span>
-                            Environmental permits
-                        </li>
-                        <li className={styles.riskItem}>
-                            <span className={styles.riskDot} style={{ backgroundColor: '#EE202E' }}></span>
-                            Contract exposure
-                        </li>
-                        <li className={styles.riskItem}>
-                            <span className={styles.riskDot} style={{ backgroundColor: '#EE202E' }}></span>
-                            Misclassification risk
-                        </li>
+                        {analysisResult?.risks.map((risk, index) => (
+                           <li key={index} className={styles.riskItem}>
+                               <span className={styles.riskDot} style={{ backgroundColor: '#EE202E' }}></span>
+                               {risk}
+                           </li>
+                        ))}
                     </ul>
                 </Card>
 
                 <Card className={styles.sidebarCard} radius="12px">
                     <h3 className={styles.sidebarTitle}>Recommended Attorney</h3>
                      <div className={styles.attorneyProfile}>
-                       <div className={styles.attorneyAvatar}>AR</div>
+                       <div className={styles.attorneyAvatar}>{analysisResult?.attorney?.initials || 'AR'}</div>
                        <div className={styles.attorneyInfo}>
-                         <h3>A.K. Raman</h3>
-                         <p>Partner, Corporate</p>
+                         <h3>{analysisResult?.attorney?.name || 'A.K. Raman'}</h3>
+                         <p>{analysisResult?.attorney?.title || 'Partner, Corporate'}</p>
                        </div>
                      </div>
-                     <p className={styles.pastMatters}>Past Matters: 16</p>
+                     <p className={styles.pastMatters}>Past Matters: {analysisResult?.attorney?.pastMatters || 16}</p>
                      
                      <button className={styles.viewProfileLinkData} style={{ marginTop: '16px', marginBottom: 0 }}>
                         View Profile
