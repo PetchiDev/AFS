@@ -6,11 +6,13 @@ import InputField from '../../components/common/InputField';
 import FileUpload from '../../components/common/FileUpload';
 import { COLORS } from '../../config/constants';
 import ViewIcon from '../../assets/icons/View.svg';
+import PlusIcon from '../../assets/icons/Plus.svg';
 import DeleteIcon from '../../assets/icons/Delete.svg';
 import styles from './KnowledgeHub.module.css';
 
 const KnowledgeHub = () => {
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  /* Sort Configs */
+
   
   // Modal States
   const [isModalOpen, setIsModalOpen] = useState(false); // Add New Source Modal
@@ -62,15 +64,7 @@ const KnowledgeHub = () => {
     }
   }, []);
 
-  const handleSort = (key, direction) => {
-    setSortConfig({ key, direction });
-    const sortedData = [...data].sort((a, b) => {
-      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-      return 0;
-    });
-    setData(sortedData);
-  };
+
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -158,10 +152,10 @@ const KnowledgeHub = () => {
   };
 
   const columns = [
-    { key: 'sno', title: 'S.NO', width: '80px', sortable: true },
-    { key: 'sourceName', title: 'Source Name', sortable: true },
-    { key: 'category', title: 'Category', sortable: true },
-    { key: 'createdDate', title: 'Created Date', sortable: true },
+    { key: 'sno', title: 'S.NO', width: '80px' },
+    { key: 'sourceName', title: 'Source Name' },
+    { key: 'category', title: 'Category' },
+    { key: 'createdDate', title: 'Created Date' },
     {
       key: 'action',
       title: 'Action',
@@ -182,11 +176,12 @@ const KnowledgeHub = () => {
   ];
 
   const detailsColumns = [
-    { key: 'sno', title: 'S.NO', width: '80px' },
-    { key: 'value', title: 'Document / URL / API Value' },
+    { key: 'sno', title: 'S.NO', width: '10%' },
+    { key: 'value', title: 'Document / URL / API Value', width: '70%' },
     {
       key: 'action',
       title: 'Action',
+      width: '20%',
       align: 'right',
       render: (row) => (
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
@@ -216,11 +211,8 @@ const KnowledgeHub = () => {
             <Button 
               variant="primary" 
               onClick={() => setIsModalOpen(true)}
-              color="#EE202E"
-              textColor="#FFFFFF"
-              icon={<span>+</span>}
               className={styles.addSourceBtn}
-              style={{ border: 'none' }}
+              icon={<img src={PlusIcon} alt="Add" style={{ width: '16px', height: '16px' }} />}
             >
               Add New Source
             </Button>
@@ -230,8 +222,6 @@ const KnowledgeHub = () => {
         <Table 
           columns={columns} 
           data={data} 
-          onSort={handleSort}
-          sortConfig={sortConfig}
         />
       </div>
 
@@ -251,11 +241,8 @@ const KnowledgeHub = () => {
           <Button 
             variant="primary" 
             onClick={() => setIsAddMoreModalOpen(true)}
-            color="#EE202E"
-            textColor="#FFFFFF"
-            icon={<span>+</span>}
             className={styles.addSourceBtn}
-            style={{ border: 'none' }}
+            icon={<img src={PlusIcon} alt="Add" style={{ width: '16px', height: '16px' }} />}
           >
             Add More
           </Button>
@@ -264,15 +251,15 @@ const KnowledgeHub = () => {
         <div className={styles.infoSection}>
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Source Name:</span>
+              <span className={styles.infoLabel}>Source Name</span>
               <span className={styles.infoValue}>{selectedSource?.sourceName || 'Compliance Docs'}</span>
             </div>
             <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Category:</span>
+              <span className={styles.infoLabel}>Category</span>
               <span className={styles.infoValue}>{selectedSource?.category || 'Legal'}</span>
             </div>
             <div className={styles.infoItem}>
-              <span className={styles.infoLabel}>Created Date:</span>
+              <span className={styles.infoLabel}>Created Date</span>
               <span className={styles.infoValue}>{selectedSource?.createdDate || '12 Jan 2025'}</span>
             </div>
           </div>

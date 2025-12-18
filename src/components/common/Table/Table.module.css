@@ -18,7 +18,7 @@
 }
 
 .th {
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: 20px 24px;
     text-align: left;
     font-family: var(--font-family-primary);
     font-size: var(--font-size-sm);
@@ -47,7 +47,7 @@
 }
 
 .td {
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: 20px 24px;
     font-family: var(--font-family-primary);
     font-size: var(--font-size-md);
     color: var(--color-text-primary);
@@ -56,16 +56,7 @@
 }
 
 /* Specific column styling can be handled via props or additional classes if needed */
-.sortIcon {
-    margin-left: var(--spacing-xs);
-    display: inline-block;
-    vertical-align: middle;
-    opacity: 0.5;
-}
 
-.th:hover .sortIcon {
-    opacity: 1;
-}
 
 @media (max-width: 768px) {
 

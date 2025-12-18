@@ -83,7 +83,7 @@ Button.displayName = 'Button';
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'success']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger', 'success', 'white']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   disabled: PropTypes.bool,
   loading: PropTypes.bool,

@@ -9,23 +9,8 @@ import styles from './Table.module.css';
  * @param {Function} onSort - Callback for sorting (columnKey, direction)
  * @param {Object} sortConfig - Current sort configuration { key, direction }
  */
-const Table = ({ columns, data, onSort, sortConfig }) => {
-  const handleSort = (column) => {
-    if (!column.sortable || !onSort) return;
+const Table = ({ columns, data }) => {
 
-    let direction = 'asc';
-    if (sortConfig && sortConfig.key === column.key && sortConfig.direction === 'asc') {
-      direction = 'desc';
-    }
-    onSort(column.key, direction);
-  };
-
-  const getSortIcon = (column) => {
-    if (!column.sortable || !sortConfig || sortConfig.key !== column.key) {
-      return null;
-    }
-    return sortConfig.direction === 'asc' ? ' ↑' : ' ↓';
-  };
 
   return (
     <div className={styles.tableContainer}>
@@ -36,11 +21,9 @@ const Table = ({ columns, data, onSort, sortConfig }) => {
               <th
                 key={column.key || index}
                 className={styles.th}
-                onClick={() => handleSort(column)}
-                style={{ width: column.width, cursor: column.sortable ? 'pointer' : 'default', textAlign: column.align || 'left' }}
+                style={{ width: column.width, textAlign: column.align || 'left' }}
               >
                 {column.title}
-                {column.sortable && <span className={styles.sortIcon}>{getSortIcon(column)}</span>}
               </th>
             ))}
           </tr>
@@ -77,11 +60,7 @@ Table.propTypes = {
     })
   ).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onSort: PropTypes.func,
-  sortConfig: PropTypes.shape({
-    key: PropTypes.string,
-    direction: PropTypes.oneOf(['asc', 'desc']),
-  }),
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Table;

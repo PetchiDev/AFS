@@ -56,6 +56,17 @@
   background-color: #218838;
 }
 
+.white {
+  background-color: #FFFFFF;
+  color: #212529;
+  border: 1px solid #E2E8F0;
+}
+
+.white:hover:not(:disabled) {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
+}
+
 .small {
   padding: 6px 12px;
   font-size: 14px;
@@ -324,7 +335,8 @@
 }
 
 /* High DPI / Retina Displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
   .button {
     border-width: 0.5px;
   }
@@ -355,4 +367,3 @@
     transform: none;
   }
 }
-
