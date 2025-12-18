@@ -1,0 +1,383 @@
+.header {
+  height: 80px;
+  background-color: var(--color-bg-primary, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 257px;
+  right: 0;
+  width: calc(100% - 257px);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.iconsContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.iconButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  padding: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.iconButton:hover {
+  background-color: rgba(238, 32, 46, 0.1);
+}
+
+.iconButton:active {
+  transform: scale(0.95);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--color-primary, #EE202E);
+  outline-offset: 2px;
+}
+
+.notificationWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.icon path,
+.icon circle,
+.icon rect {
+  stroke: var(--color-text-secondary, #65758B);
+  transition: stroke 0.2s ease;
+}
+
+.iconButton:hover .icon path,
+.iconButton:hover .icon circle,
+.iconButton:hover .icon rect {
+  stroke: var(--color-primary, #EE202E);
+}
+
+.separator {
+  width: 1px;
+  height: 20px;
+  background-color: #E5E7EB;
+  margin: 0 16px;
+  flex-shrink: 0;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.profileContainer:hover {
+  background-color: rgba(238, 32, 46, 0.05);
+}
+
+.avatarCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #EE202E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatarInitials {
+  color: var(--color-text-light, #FFFFFF);
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+}
+
+.profileName {
+  color: var(--color-text-primary, #212529);
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+.profileEmail {
+  color: var(--color-text-secondary, #65758B);
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .iconButton {
+    min-width: 36px;
+    min-height: 36px;
+    touch-action: manipulation;
+  }
+
+  .profileContainer {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .iconButton:active {
+    background-color: rgba(238, 32, 46, 0.15);
+  }
+
+  .profileContainer:active {
+    background-color: rgba(238, 32, 46, 0.1);
+  }
+}
+
+/* Landscape Orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .header {
+    height: 60px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 16px;
+    left: 240px;
+    width: calc(100% - 240px);
+  }
+
+  .separator {
+    margin: 0 12px;
+  }
+
+  .iconsContainer {
+    gap: 8px;
+  }
+
+  .iconButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatarCircle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .avatarInitials {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 70px;
+    padding: 0 12px 0 72px;
+    left: 0;
+    width: 100%;
+  }
+
+  .separator {
+    margin: 0 8px;
+    display: none;
+  }
+
+  .iconsContainer {
+    gap: 6px;
+  }
+
+  .iconButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .profileContainer {
+    gap: 8px;
+  }
+
+  .profileInfo {
+    display: none;
+  }
+
+  .avatarCircle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .avatarInitials {
+    font-size: 12px;
+  }
+
+  .rightSection {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    height: 65px;
+    padding: 0 10px 0 62px;
+  }
+
+  .iconsContainer {
+    gap: 4px;
+  }
+
+  .iconButton {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .avatarCircle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .avatarInitials {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 60px;
+    padding: 0 8px 0 60px;
+    left: 0;
+    width: 100%;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .iconsContainer {
+    gap: 4px;
+  }
+
+  .iconButton {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .profileContainer {
+    gap: 6px;
+  }
+
+  .avatarCircle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatarInitials {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    height: 56px;
+    padding: 0 6px 0 58px;
+  }
+
+  .iconButton {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .avatarCircle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .avatarInitials {
+    font-size: 10px;
+  }
+
+  .iconsContainer {
+    gap: 3px;
+  }
+}
+

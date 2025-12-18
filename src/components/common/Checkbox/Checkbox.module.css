@@ -1,0 +1,175 @@
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.checkboxInput {
+  width: 17.75px;
+  height: 17.75px;
+  border-radius: 4.44px;
+  border: 1.11px solid #D1D5DB;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.checkboxInput:hover:not(:disabled) {
+  border-color: var(--color-primary, #EE202E);
+}
+
+.checkboxInput:checked {
+  background-color: var(--color-primary, #EE202E);
+  border-color: var(--color-primary, #EE202E);
+}
+
+.checkboxInput:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 4px;
+  height: 8px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  border-radius: 1px;
+}
+
+.checkboxInput:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #F3F4F6;
+  border-color: #D1D5DB;
+}
+
+.checkboxInput:disabled:checked {
+  background-color: #D1D5DB;
+  border-color: #D1D5DB;
+}
+
+.checkboxInput:focus {
+  outline: 2px solid var(--color-primary, #EE202E);
+  outline-offset: 2px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
+  font-size: 14px;
+  color: #374151;
+}
+
+.checkboxLabel.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.labelText {
+  line-height: 1.5;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .checkboxInput {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border-width: 1px;
+  }
+
+  .checkboxInput:checked::after {
+    width: 3.5px;
+    height: 7px;
+    border-width: 0 1.5px 1.5px 0;
+  }
+
+  .checkboxLabel {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkboxInput {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border-width: 1px;
+  }
+
+  .checkboxInput:checked::after {
+    width: 3.5px;
+    height: 7px;
+    border-width: 0 1.5px 1.5px 0;
+  }
+
+  .checkboxLabel {
+    font-size: 13px;
+  }
+
+  .checkboxWrapper {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkboxInput {
+    width: 15px;
+    height: 15px;
+    border-radius: 3.5px;
+    border-width: 1px;
+  }
+
+  .checkboxInput:checked::after {
+    width: 3px;
+    height: 6px;
+    border-width: 0 1.5px 1.5px 0;
+  }
+
+  .checkboxLabel {
+    font-size: 12px;
+  }
+
+  .checkboxWrapper {
+    gap: 6px;
+  }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .checkboxInput {
+    border-width: 0.5px;
+  }
+
+  .checkboxInput:checked::after {
+    border-width: 0 1.5px 1.5px 0;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .checkboxInput {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+  }
+
+  .checkboxInput:checked::after {
+    width: 5px;
+    height: 9px;
+    border-width: 0 2px 2px 0;
+  }
+}
+

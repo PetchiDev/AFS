@@ -1,0 +1,298 @@
+.inputField {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #1F2937;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+  font-family: var(--font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
+  min-height: 44px;
+}
+
+.inputField:focus {
+  border-color: #4A90E2;
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+.inputField:disabled {
+  background-color: #F3F4F6;
+  color: #9CA3AF;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.inputField::placeholder {
+  color: #9CA3AF;
+}
+
+.inputField:required {
+  border-left: 3px solid #EF4444;
+}
+
+.inputField:required:focus {
+  border-left-color: #4A90E2;
+}
+
+/* Responsive Styles */
+
+/* Large Desktops (1920px and above) */
+@media (min-width: 1920px) {
+  .inputField {
+    padding: 12px 18px;
+    font-size: 17px;
+    border-radius: 5px;
+    min-height: 48px;
+  }
+
+  .inputField:focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 3px;
+  }
+
+  .inputField:required {
+    border-left-width: 4px;
+  }
+}
+
+/* Desktops (1024px - 1919px) - Default styles apply */
+
+/* Tablets (768px - 1023px) */
+@media (max-width: 1023px) {
+  .inputField {
+    padding: 9px 15px;
+    font-size: 15px;
+    min-height: 44px;
+  }
+
+  .inputField:focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+  }
+}
+
+/* Mobile Devices (480px - 767px) */
+@media (max-width: 767px) {
+  .inputField {
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    min-height: 44px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .inputField:focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 3px;
+    border-color: #4A90E2;
+  }
+
+  .inputField:required {
+    border-left-width: 3px;
+  }
+
+  /* Prevent zoom on iOS when focusing input */
+  @supports (-webkit-touch-callout: none) {
+    .inputField {
+      font-size: 16px;
+    }
+  }
+}
+
+/* Small Mobile Devices (320px - 479px) */
+@media (max-width: 479px) {
+  .inputField {
+    padding: 9px 12px;
+    font-size: 15px;
+    border-radius: 5px;
+    min-height: 42px;
+  }
+
+  .inputField:focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+  }
+
+  .inputField:required {
+    border-left-width: 2.5px;
+  }
+}
+
+/* Extra Small Devices (below 320px) */
+@media (max-width: 319px) {
+  .inputField {
+    padding: 8px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    min-height: 40px;
+  }
+
+  .inputField:focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+  }
+
+  .inputField:required {
+    border-left-width: 2px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .inputField {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 16px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .inputField:focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 3px;
+  }
+
+  /* Prevent zoom on iOS */
+  @supports (-webkit-touch-callout: none) {
+    .inputField {
+      font-size: 16px;
+    }
+  }
+}
+
+/* Landscape Orientation (Mobile) */
+@media (max-width: 767px) and (orientation: landscape) {
+  .inputField {
+    padding: 8px 14px;
+    min-height: 40px;
+    font-size: 15px;
+  }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .inputField {
+    border-width: 0.5px;
+  }
+
+  .inputField:required {
+    border-left-width: 1.5px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .inputField {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    color: #000000;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .inputField:focus {
+    outline: none;
+    border-color: #000000;
+  }
+
+  .inputField::placeholder {
+    color: #CCCCCC;
+  }
+
+  .inputField:required {
+    border-left: 2px solid #000000;
+  }
+}
+
+/* Reduced Motion (Accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  .inputField {
+    transition: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .inputField {
+    background-color: #1F2937;
+    border-color: #4B5563;
+    color: #F3F4F6;
+  }
+
+  .inputField:focus {
+    border-color: #60A5FA;
+    outline-color: #60A5FA;
+    background-color: #111827;
+  }
+
+  .inputField:disabled {
+    background-color: #374151;
+    color: #6B7280;
+    border-color: #4B5563;
+  }
+
+  .inputField::placeholder {
+    color: #6B7280;
+  }
+
+  .inputField:required {
+    border-left-color: #F87171;
+  }
+
+  .inputField:required:focus {
+    border-left-color: #60A5FA;
+  }
+}
+
+/* Date and Time Input Specific Styles */
+.inputField[type="date"],
+.inputField[type="time"],
+.inputField[type="datetime-local"] {
+  position: relative;
+}
+
+.inputField[type="date"]::-webkit-calendar-picker-indicator,
+.inputField[type="time"]::-webkit-calendar-picker-indicator,
+.inputField[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.inputField[type="date"]::-webkit-calendar-picker-indicator:hover,
+.inputField[type="time"]::-webkit-calendar-picker-indicator:hover,
+.inputField[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Number Input Specific Styles */
+.inputField[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.inputField[type="number"]::-webkit-outer-spin-button,
+.inputField[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Search Input Specific Styles */
+.inputField[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.inputField[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.inputField[type="search"]::-webkit-search-cancel-button:hover {
+  opacity: 1;
+}
+

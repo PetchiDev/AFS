@@ -1,0 +1,229 @@
+.container {
+  padding: 32px;
+  min-height: 100vh;
+  background-color: var(--color-bg-secondary, #F8F9FA);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-text-primary, #212529);
+  font-family: var(--font-family-primary);
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--color-text-secondary, #65758B);
+  font-family: var(--font-family-primary);
+  line-height: 1.5;
+}
+
+.content {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.companyCard {
+  width: 576px;
+  min-height: 559px;
+  padding: 24px;
+  background-color: var(--color-bg-primary, #FFFFFF);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.attachmentCard {
+  width: 485px;
+  min-height: 389px;
+  padding: 24px;
+  background-color: var(--color-bg-primary, #FFFFFF);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
+  font-family: var(--font-family-primary);
+  margin-bottom: 8px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  max-width: 526.67px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-primary, #EE202E);
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary, #212529);
+  background-color: var(--color-bg-primary, #FFFFFF);
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary, #EE202E);
+  box-shadow: 0 0 0 3px rgba(238, 32, 46, 0.1);
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary, #65758B);
+}
+
+.dropdown {
+  width: 100%;
+  max-width: 526.67px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-primary, #EE202E);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--color-text-secondary, #65758B);
+  font-family: var(--font-family-primary);
+  margin-top: 4px;
+}
+
+.runButton {
+  width: 100%;
+  max-width: 526.67px;
+  height: 44px;
+  border-radius: 6px;
+  background-color: var(--color-primary, #EE202E);
+  color: var(--color-text-light, #FFFFFF);
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-family-primary);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.runButton:hover:not(:disabled) {
+  background-color: rgba(238, 32, 46, 0.9);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.checkbox {
+  width: auto;
+}
+
+.fileUploadWrapper {
+  margin: 12px 0;
+  width: 100%;
+}
+
+.fileUpload {
+  width: 100%;
+  border: 1.5px dashed var(--color-primary, #EE202E);
+  border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .companyCard,
+  .attachmentCard {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .input,
+  .dropdown,
+  .runButton {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .companyCard,
+  .attachmentCard {
+    padding: 16px;
+    min-height: auto;
+  }
+
+  .input,
+  .dropdown,
+  .runButton {
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .companyCard,
+  .attachmentCard {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .input,
+  .dropdown,
+  .runButton {
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+  }
+}
+
