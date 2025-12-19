@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import InputField from '@/components/common/InputField';
 import Dropdown from '@/components/common/Dropdown';
 import Table from '@/components/common/Table';
+import ReportView from '@/components/features/Analysis/ReportView';
 
 import { REPORTS_CONSTANTS, REPORT_FILTERS, MOCK_REPORTS_DATA, COLORS } from '@/config/constants';
 import SearchIcon from '@/assets/icons/Search.svg';
@@ -21,6 +22,31 @@ const Reports = () => {
 
   const dateRangeOptions = REPORT_FILTERS.DATE_RANGES.map(range => ({ label: range, value: range }));
   const sortOptions = REPORT_FILTERS.SORT_OPTIONS.map(sort => ({ label: sort, value: sort }));
+
+  const handleViewReport = (report) => {
+    // Generate mock analysis result based on report data if needed, or assume ReportView handles it
+    // For now we pass the basic details and ReportView can handle the rest or we mock fuller data
+    const mockFullData = {
+        score: report.confidence,
+        risks: [
+            "Environmental compliance gaps",
+            "Supplier contract exposure",
+            "Employee misclassification risk"
+        ],
+        attorney: {
+            name: "A.K. Raman",
+            title: "Partner, Corporate",
+            initials: "AR",
+            pastMatters: 16
+        },
+        evidence: [
+            { label: "Regulatory Filing", action: "View" },
+            { label: "News Article", action: "View" },
+            { label: "Internal Doc", action: "Open" }
+        ]
+    };
+    setSelectedReport({ ...report, ...mockFullData });
+  };
 
   const columns = [
     {
@@ -64,7 +90,7 @@ const Reports = () => {
       width: '15%',
       align: 'right',
       render: (row) => (
-        <button className={styles.viewButton} onClick={() => setSelectedReport(row)}>
+        <button className={styles.viewButton} onClick={() => handleViewReport(row)}>
            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
               <circle cx="12" cy="12" r="3"></circle>
@@ -83,28 +109,12 @@ const Reports = () => {
 
   if (selectedReport) {
      return (
-        <div className={styles.container}>
-           <div style={{ padding: '24px' }}>
-             <button 
-                onClick={() => setSelectedReport(null)}
-                style={{ 
-                  background: 'none', 
-                  border: 'none', 
-                  cursor: 'pointer', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '8px',
-                  marginBottom: '24px',
-                  color: '#64748B'
-                }}
-             >
-                ← Back
-             </button>
-             <h2>Report Details</h2>
-             <p>Detail view is being updated to use the new dynamic structure. Please check back later.</p>
-             {/* Temporary placeholder until we port the NewAnalysis structure here */}
-           </div>
-        </div>
+        <ReportView 
+            analysisResult={selectedReport}
+            companyName={selectedReport.companyName}
+            practiceArea={selectedReport.practiceArea}
+            onBack={() => setSelectedReport(null)}
+        />
      );
   }
 

@@ -21,7 +21,7 @@
   font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .description {
@@ -32,7 +32,7 @@
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
 }
 
 .filterBar {
