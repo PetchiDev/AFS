@@ -1,35 +1,36 @@
+/* Container */
 .container {
-  padding: 32px;
-  max-width: 1400px;
-  /* Increased max-width for better view on large screens */
-  margin: 0 auto;
+  padding: 0;
+  width: 100%;
   position: relative;
-  min-height: 100vh;
-  /* Prevent horizontal scroll during animation */
+  overflow-x: hidden;
+  background-color: var(--color-bg-secondary, #F8F9FA);
 }
 
 /* List View Styles */
 .header {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .title {
-  font-size: 28px;
-  /* Increased size to match detail view */
-  font-weight: 600;
-  color: #111827;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary, #111827);
   margin-bottom: 8px;
   font-family: var(--font-family-primary);
+  line-height: 1.3;
 }
 
 .description {
-  font-size: 16px;
-  color: #6B7280;
+  font-size: 14px;
+  color: var(--color-text-secondary, #6B7280);
   font-family: var(--font-family-primary);
+  margin: 0;
 }
 
 .searchContainer {
   margin-bottom: 24px;
+  max-width: 350px;
 }
 
 .searchInput {
@@ -42,30 +43,34 @@
 .tableCard {
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   padding: 0 !important;
+  border: 1px solid #F1F5F9;
 }
 
 .loading {
   padding: 48px;
   text-align: center;
-  color: #6B7280;
+  color: var(--color-text-secondary, #6B7280);
+  font-size: 16px;
+  font-family: var(--font-family-primary);
 }
 
+/* Action Button in Table */
 .actionButton {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 4px 8px;
   transition: opacity 0.2s;
-  color: #DC2626;
+  color: var(--color-primary, #EE202E);
   font-weight: 500;
-  justify-content: flex-end;
-  width: 100%;
+  font-size: 14px;
+  font-family: var(--font-family-primary);
 }
 
 .actionButton:hover {
@@ -81,25 +86,23 @@
   font-size: 14px;
 }
 
-/* Detail View Styles (Copied/Adapted from ReportView) */
+/* Detail View Styles */
 .detailContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
   position: absolute;
-  top: 32px;
+  top: 0;
   left: 0;
   right: 0;
-  padding: 0 32px;
-  /* Match container padding */
+  padding: 0;
   display: none;
-  /* Hidden by default */
 }
 
 .backButton {
   background: transparent;
   border: none;
-  color: #65758B;
+  color: var(--color-text-secondary, #65758B);
   font-size: 14px;
   cursor: pointer;
   display: flex;
@@ -109,10 +112,11 @@
   margin-bottom: 24px;
   font-family: var(--font-family-primary);
   width: fit-content;
+  transition: color 0.2s;
 }
 
 .backButton:hover {
-  color: #EE202E;
+  color: var(--color-primary, #EE202E);
 }
 
 .detailHeader {
@@ -121,7 +125,7 @@
 
 .detailSubtitle {
   font-size: 16px;
-  color: #65758B;
+  color: var(--color-text-secondary, #65758B);
   font-family: var(--font-family-primary);
   line-height: 1.5;
   margin-top: 8px;
@@ -140,7 +144,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  min-height: 600px;
+  min-height: 500px;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border: 1px solid #F1F5F9;
@@ -148,7 +152,7 @@
 
 .sidebar {
   flex: 1;
-  min-width: 320px;
+  min-width: 300px;
   max-width: 360px;
   display: flex;
   flex-direction: column;
@@ -157,10 +161,10 @@
 
 .sidebarCard {
   background: #FFFFFF;
-  padding: 24px 28px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   border: 1px solid #F1F5F9;
@@ -169,9 +173,8 @@
 .sidebarTitle {
   font-size: 16px;
   font-weight: 700;
-  color: #212529;
+  color: var(--color-text-primary, #212529);
   margin: 0;
-  margin-bottom: 4px;
 }
 
 .summaryRow {
@@ -180,34 +183,30 @@
   align-items: center;
   font-size: 14px;
   padding-bottom: 12px;
-  margin-bottom: 2px;
   border-bottom: 1px solid #F1F5F9;
 }
 
 .summaryRow:last-child {
   border-bottom: none;
   padding-bottom: 0;
-  margin-bottom: 0;
 }
 
 .summaryLabel {
-  color: #64748B;
+  color: var(--color-text-secondary, #64748B);
   font-weight: 500;
-  width: 50%;
 }
 
 .summaryValue {
   font-weight: 600;
-  color: #212529;
+  color: var(--color-text-primary, #212529);
   text-align: right;
-  width: 50%;
 }
 
 .label {
   display: block;
   font-size: 14px;
-  font-weight: 700;
-  color: #212529;
+  font-weight: 600;
+  color: var(--color-text-primary, #212529);
   margin-bottom: 8px;
 }
 
@@ -219,14 +218,13 @@
 
 .textarea {
   width: 100%;
-  height: 100%;
-  min-height: 400px;
+  min-height: 350px;
   padding: 16px 20px;
   border: 1px solid #E2E8F0;
   border-radius: 8px;
   font-family: var(--font-family-primary);
-  font-size: 15px;
-  color: #212529;
+  font-size: 14px;
+  color: var(--color-text-primary, #212529);
   resize: vertical;
   line-height: 1.6;
   background-color: #FAFAFA;
@@ -235,7 +233,7 @@
 
 .textarea:focus {
   outline: none;
-  border-color: #EE202E;
+  border-color: var(--color-primary, #EE202E);
   background-color: #FFFFFF;
 }
 
@@ -260,10 +258,10 @@
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: #212529;
+  color: var(--color-text-primary, #212529);
   cursor: pointer;
   transition: all 0.2s;
-  min-width: fit-content;
+  font-family: var(--font-family-primary);
 }
 
 .secondaryActionButton:hover {
@@ -278,7 +276,7 @@
   gap: 8px;
   padding: 10px 24px;
   height: 40px;
-  background-color: #EE202E;
+  background-color: var(--color-primary, #EE202E);
   border: none;
   border-radius: 8px;
   font-size: 14px;
@@ -287,18 +285,17 @@
   cursor: pointer;
   transition: background-color 0.2s;
   margin-left: auto;
+  font-family: var(--font-family-primary);
 }
 
 .primaryActionButton:hover {
-  background-color: rgba(238, 32, 46, 0.9);
+  background-color: #D61B29;
 }
 
 .pastMatters {
   font-size: 13px;
-  color: #64748B;
-  margin-top: -4px;
-  margin-bottom: 20px;
-  text-align: left;
+  color: var(--color-text-secondary, #64748B);
+  margin: 0;
 }
 
 /* Attorney Profile in Sidebar */
@@ -306,12 +303,12 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .attorneyAvatar {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   background-color: #F1F5F9;
   border-radius: 50%;
   display: flex;
@@ -319,19 +316,19 @@
   justify-content: center;
   color: #64748B;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .attorneyInfo h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #212529;
+  color: var(--color-text-primary, #212529);
   margin: 0;
 }
 
 .attorneyInfo p {
   font-size: 12px;
-  color: #65758B;
+  color: var(--color-text-secondary, #65758B);
   margin: 4px 0 0 0;
 }
 
@@ -345,12 +342,12 @@
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #212529;
+  color: var(--color-text-primary, #212529);
   background: #FFFFFF;
   cursor: pointer;
   transition: all 0.2s;
-  margin-top: 16px;
-  margin-bottom: 0;
+  margin-top: 12px;
+  font-family: var(--font-family-primary);
 }
 
 .viewProfileLinkData:hover {
@@ -358,7 +355,26 @@
   border-color: #CBD5E1;
 }
 
-/* Responsive adjustments */
+/* ============================================
+   RESPONSIVE DESIGN - Large Desktop (1440px+)
+   ============================================ */
+@media (min-width: 1440px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .searchContainer {
+    max-width: 400px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Tablet (1024px and below)
+   ============================================ */
 @media (max-width: 1024px) {
   .detailContent {
     flex-direction: column;
@@ -368,21 +384,43 @@
     width: 100%;
     max-width: 100%;
     min-width: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebarCard {
+    flex: 1;
+    min-width: 280px;
   }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN - Tablet (768px and below)
+   ============================================ */
 @media (max-width: 768px) {
-  .container {
-    padding: 16px;
+  .header {
+    margin-bottom: 20px;
   }
 
   .title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
-  .detailContainer {
-    padding: 0 16px;
-    top: 16px;
+  .description {
+    font-size: 13px;
+  }
+
+  .searchContainer {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .sidebar {
+    flex-direction: column;
+  }
+
+  .sidebarCard {
+    min-width: 100%;
   }
 
   .emailActions {
@@ -392,5 +430,109 @@
 
   .primaryActionButton {
     margin-left: 0;
+  }
+
+  .secondaryActionButton,
+  .primaryActionButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .emailEditorCard {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .sidebarCard {
+    padding: 20px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Mobile (480px and below)
+   ============================================ */
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .searchContainer {
+    margin-bottom: 16px;
+  }
+
+  .emailEditorCard {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .sidebarCard {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .textarea {
+    min-height: 250px;
+    font-size: 13px;
+    padding: 12px 16px;
+  }
+
+  .emailActions {
+    gap: 10px;
+  }
+
+  .secondaryActionButton,
+  .primaryActionButton {
+    height: 38px;
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .actionButton {
+    font-size: 13px;
+    gap: 4px;
+  }
+
+  .actionIcon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Small Mobile (360px and below)
+   ============================================ */
+@media (max-width: 360px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 11px;
+  }
+
+  .emailEditorCard {
+    padding: 12px;
+  }
+
+  .sidebarCard {
+    padding: 12px;
+  }
+
+  .textarea {
+    min-height: 200px;
+  }
+
+  .secondaryActionButton,
+  .primaryActionButton {
+    font-size: 12px;
+    padding: 6px 12px;
   }
 }

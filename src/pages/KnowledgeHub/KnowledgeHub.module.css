@@ -1,7 +1,7 @@
 .pageContainer {
-  padding: var(--spacing-lg) var(--spacing-xl);
-  background-color: var(--color-bg-primary);
-  min-height: 100vh;
+  padding: 0;
+  background-color: transparent;
+  width: 100%;
 }
 
 .header {

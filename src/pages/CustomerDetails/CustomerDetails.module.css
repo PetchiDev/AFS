@@ -1,7 +1,6 @@
 /* Container */
 .container {
   padding: 0;
-  min-height: 100vh;
   background-color: var(--color-bg-primary, #FFFFFF);
   width: 100%;
 }
