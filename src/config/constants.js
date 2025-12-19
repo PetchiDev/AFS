@@ -88,6 +88,7 @@ export const ROUTES = {
   KNOWLEDGE_HUB: '/knowledge-hub',
   REPORTS: '/reports',
   ATTORNEY_DIRECTORY: '/attorney-directory',
+  ATTORNEY_PROFILE: '/attorney-directory/$attorneyId',
   EMAIL_DRAFTS: '/email-drafts',
   CUSTOMER_DETAILS: '/customer-details',
   HELP_RESOURCES: '/help-resources',

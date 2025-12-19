@@ -1,0 +1,190 @@
+.container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.backLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748B;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.backLink:hover {
+    color: #334155;
+}
+
+.pageTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 24px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Profile Card */
+.profileCard {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    padding: 32px;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #F1F5F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 500;
+    color: #64748B;
+    flex-shrink: 0;
+}
+
+.profileInfo {
+    flex: 1;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E293B;
+    margin: 0 0 8px 0;
+}
+
+.role {
+    font-size: 16px;
+    color: #64748B;
+    margin: 0 0 24px 0;
+}
+
+/* About Card */
+.aboutCard {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    padding: 24px;
+}
+
+.cardTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1E293B;
+    margin: 0 0 16px 0;
+}
+
+.aboutText {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748B;
+    margin: 0;
+}
+
+/* Sidebar Cards */
+.sidebarCard {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    padding: 24px;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1E293B;
+    margin: 0 0 8px 0;
+}
+
+.sectionValue {
+    font-size: 14px;
+    color: #64748B;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: #FEF2F2;
+    color: #EF4444;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.pastMattersCount {
+    font-size: 16px;
+    font-weight: 600;
+    color: #EF4444;
+}
+
+/* Contact Info */
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #64748B;
+}
+
+.contactItem:last-child {
+    margin-bottom: 0;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    color: #94A3B8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}

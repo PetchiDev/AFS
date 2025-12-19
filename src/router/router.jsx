@@ -13,6 +13,7 @@ import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import '@/styles/globals.css';
 import styles from '../App.module.css';
+import AttorneyProfile from '@/pages/AttorneyDirectory/AttorneyProfile';
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -52,10 +53,18 @@ const reportsRoute = createRoute({
   component: Reports
 });
 
+
+
 const attorneyDirectoryRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.ATTORNEY_DIRECTORY,
   component: AttorneyDirectory
+});
+
+const attorneyProfileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.ATTORNEY_PROFILE,
+  component: AttorneyProfile
 });
 
 const emailDraftsRoute = createRoute({
@@ -94,6 +103,7 @@ const routeTree = rootRoute.addChildren([
   knowledgeHubRoute,
   reportsRoute,
   attorneyDirectoryRoute,
+  attorneyProfileRoute,
   emailDraftsRoute,
   customerDetailsRoute,
   helpResourcesRoute,

@@ -1,0 +1,80 @@
+export const MOCK_ATTORNEYS = [
+    {
+        id: 1,
+        name: 'A.K. Raman',
+        initials: 'AR',
+        role: 'Partner',
+        practiceArea: 'Corporate',
+        expertise: ['Compliance', 'Manufacturing'],
+        pastMatters: 16,
+        email: 'ak.raman@afs.com',
+        phone: '+1 (555) 123-4567',
+        location: 'New York, NY',
+        about: 'A.K. Raman is a Partner in the Corporate practice group with over 15 years of experience in compliance and manufacturing law.'
+    },
+    {
+        id: 2,
+        name: 'Sarah Lewis',
+        initials: 'SL',
+        role: 'Senior Associate',
+        practiceArea: 'Corporate',
+        expertise: ['M&A', 'Contract Law'],
+        pastMatters: 11,
+        email: 'sarah.lewis@afs.com',
+        phone: '+1 (555) 234-5678',
+        location: 'Chicago, IL',
+        about: 'Sarah Lewis specializes in Mergers & Acquisitions and Contract Law, providing strategic counsel to corporate clients.'
+    },
+    {
+        id: 3,
+        name: 'Ajay Rao',
+        initials: 'AR',
+        role: 'Partner',
+        practiceArea: 'Litigation',
+        expertise: ['Disputes', 'Arbitration'],
+        pastMatters: 21,
+        email: 'ajay.rao@afs.com',
+        phone: '+1 (555) 345-6789',
+        location: 'San Francisco, CA',
+        about: 'Ajay Rao is a seasoned litigator with a strong track record in complex commercial disputes and arbitration.'
+    },
+    {
+        id: 4,
+        name: 'Maria Chen',
+        initials: 'MC',
+        role: 'Associate',
+        practiceArea: 'Employment',
+        expertise: ['Labor Law', 'HR Compliance'],
+        pastMatters: 8,
+        email: 'maria.chen@afs.com',
+        phone: '+1 (555) 456-7890',
+        location: 'Boston, MA',
+        about: 'Maria Chen advises on employment law matters, including labor relations, HR compliance, and workplace policies.'
+    },
+    {
+        id: 5,
+        name: 'David Kim',
+        initials: 'DK',
+        role: 'Counsel',
+        practiceArea: 'IP',
+        expertise: ['Patents', 'Trademarks'],
+        pastMatters: 14,
+        email: 'david.kim@afs.com',
+        phone: '+1 (555) 567-8901',
+        location: 'Washington, D.C.',
+        about: 'David Kim focuses on Intellectual Property law, helping clients protect their patents and trademarks globally.'
+    },
+    {
+        id: 6,
+        name: 'Emma Thompson',
+        initials: 'ET',
+        role: 'Partner',
+        practiceArea: 'Compliance',
+        expertise: ['Regulatory', 'Risk Management'],
+        pastMatters: 19,
+        email: 'emma.thompson@afs.com',
+        phone: '+1 (555) 678-9012',
+        location: 'London, UK',
+        about: 'Emma Thompson is a leading expert in regulatory compliance and risk management for multinational corporations.'
+    }
+];

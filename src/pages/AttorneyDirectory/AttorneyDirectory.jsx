@@ -1,66 +1,12 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { ROUTES } from '@/config/constants';
 import Button from '@/components/common/Button';
 import Dropdown from '@/components/common/Dropdown';
 import InputField from '@/components/common/InputField';
 import styles from './AttorneyDirectory.module.css';
 
-// Mock Data
-const MOCK_ATTORNEYS = [
-  {
-    id: 1,
-    name: 'A.K. Raman',
-    initials: 'AR',
-    role: 'Partner',
-    practiceArea: 'Corporate',
-    expertise: ['Compliance', 'Manufacturing'],
-    pastMatters: 16
-  },
-  {
-    id: 2,
-    name: 'Sarah Lewis',
-    initials: 'SL',
-    role: 'Senior Associate',
-    practiceArea: 'Corporate',
-    expertise: ['M&A', 'Contract Law'],
-    pastMatters: 11
-  },
-  {
-    id: 3,
-    name: 'Ajay Rao',
-    initials: 'AR',
-    role: 'Partner',
-    practiceArea: 'Litigation',
-    expertise: ['Disputes', 'Arbitration'],
-    pastMatters: 21
-  },
-  {
-    id: 4,
-    name: 'Maria Chen',
-    initials: 'MC',
-    role: 'Associate',
-    practiceArea: 'Employment',
-    expertise: ['Labor Law', 'HR Compliance'],
-    pastMatters: 8
-  },
-  {
-    id: 5,
-    name: 'David Kim',
-    initials: 'DK',
-    role: 'Counsel',
-    practiceArea: 'IP',
-    expertise: ['Patents', 'Trademarks'],
-    pastMatters: 14
-  },
-  {
-    id: 6,
-    name: 'Emma Thompson',
-    initials: 'ET',
-    role: 'Partner',
-    practiceArea: 'Compliance',
-    expertise: ['Regulatory', 'Risk Management'],
-    pastMatters: 19
-  }
-];
+import { MOCK_ATTORNEYS } from '@/data/mockAttorneys';
 
 const PRACTICE_AREAS = [
   { label: 'All Practice Areas', value: '' },
@@ -122,6 +68,8 @@ const AttorneyDirectory = () => {
   const [selectedRole, setSelectedRole] = useState('');
   const [sortBy, setSortBy] = useState('name_asc');
 
+  const navigate = useNavigate();
+
   // Filter Logic
   const filteredAttorneys = useMemo(() => {
     return MOCK_ATTORNEYS.filter(attorney => {
@@ -159,6 +107,10 @@ const AttorneyDirectory = () => {
 
   const handleSortChange = (option) => {
     setSortBy(option.target.value);
+  };
+
+  const handleViewProfile = (attorneyId) => {
+    navigate({ to: ROUTES.ATTORNEY_PROFILE.replace('$attorneyId', attorneyId) });
   };
 
   return (
@@ -237,7 +189,10 @@ const AttorneyDirectory = () => {
                 </div>
             </div>
 
-            <button className={styles.viewProfileButton}>
+            <button 
+                className={styles.viewProfileButton}
+                onClick={() => handleViewProfile(attorney.id)}
+            >
                 View Profile
             </button>
           </div>
