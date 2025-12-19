@@ -95,6 +95,25 @@ const KnowledgeHub = () => {
     setFormData({ sourceName: '', category: '', file: null, url: '', apiKey: '' });
   };
 
+  const handleSave = () => {
+    if (!formData.sourceName || !formData.category) return;
+
+    const newSource = {
+      id: Date.now(),
+      sno: (data.length + 1).toString().padStart(2, '0'),
+      sourceName: formData.sourceName,
+      category: formData.category,
+      createdDate: new Date().toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      })
+    };
+
+    setData(prev => [...prev, newSource]);
+    handleCloseModal();
+  };
+
   const handleCloseAddMoreModal = () => {
     setIsAddMoreModalOpen(false);
     setAddMoreData({ file: null, url: '', apiKey: '' });
@@ -358,7 +377,7 @@ const KnowledgeHub = () => {
               <button className={styles.cancelBtn} onClick={handleCloseModal}>
                 Cancel
               </button>
-              <button className={styles.saveBtn} onClick={handleCloseModal}>
+              <button className={styles.saveBtn} onClick={handleSave}>
                 Save
               </button>
             </div>

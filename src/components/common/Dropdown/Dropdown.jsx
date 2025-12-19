@@ -133,7 +133,7 @@ const Dropdown = ({
     <div className={containerClasses} ref={dropdownRef} style={wrapperStyles}>
       <input type="hidden" name={name} value={selectedValue} />
       <div
-        className={`${styles.dropdown} ${isOpen ? styles.open : ''} ${disabled ? styles.disabled : ''}`}
+        className={`${styles.dropdown} ${isOpen ? styles.open : ''} ${disabled ? styles.disabled : ''} ${rest.error ? styles.error : ''}`}
         style={innerStyles}
         onClick={handleToggle}
         role="button"

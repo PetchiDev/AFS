@@ -64,6 +64,7 @@ const PlusIcon = ({ size = 16 }) => (
 );
 
 const AttorneyDirectory = () => {
+  const [attorneys, setAttorneys] = useState(MOCK_ATTORNEYS);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPractice, setSelectedPractice] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
@@ -74,7 +75,7 @@ const AttorneyDirectory = () => {
 
   // Filter Logic
   const filteredAttorneys = useMemo(() => {
-    return MOCK_ATTORNEYS.filter(attorney => {
+    return attorneys.filter(attorney => {
       const matchSearch = attorney.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           attorney.practiceArea.toLowerCase().includes(searchQuery.toLowerCase());
       const matchPractice = selectedPractice ? attorney.practiceArea === selectedPractice : true;
@@ -93,7 +94,7 @@ const AttorneyDirectory = () => {
       }
       return 0;
     });
-  }, [searchQuery, selectedPractice, selectedRole, sortBy]);
+  }, [attorneys, searchQuery, selectedPractice, selectedRole, sortBy]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -115,9 +116,28 @@ const AttorneyDirectory = () => {
     navigate({ to: ROUTES.ATTORNEY_PROFILE.replace('$attorneyId', attorneyId) });
   };
 
-  const handleAddAttorney = (newAttorney) => {
-    console.log('Adding new attorney:', newAttorney);
-    // In a real app, this would call an API
+  const handleAddAttorney = (newAttorneyData) => {
+    const initials = newAttorneyData.fullName
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase();
+
+    const newAttorney = {
+      id: Date.now(), // Unique ID
+      name: newAttorneyData.fullName,
+      initials: initials,
+      role: 'Associate', // Default role for new entry
+      practiceArea: newAttorneyData.practiceArea,
+      expertise: newAttorneyData.expertise,
+      pastMatters: parseInt(newAttorneyData.pastMatters, 10) || 0,
+      email: newAttorneyData.emailId,
+      phone: newAttorneyData.phoneNumber,
+      location: newAttorneyData.location,
+      about: `New attorney specializing in ${newAttorneyData.practiceArea}.`
+    };
+
+    setAttorneys(prev => [newAttorney, ...prev]);
     setIsAddModalOpen(false);
   };
 

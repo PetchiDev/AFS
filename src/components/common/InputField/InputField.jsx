@@ -33,7 +33,7 @@ const InputField = ({
   return (
     <input
       type={type}
-      className={styles.inputField}
+      className={`${styles.inputField} ${rest.error ? styles.error : ''}`}
       placeholder={placeholder}
       value={value}
       onChange={onChange}

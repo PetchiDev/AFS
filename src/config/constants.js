@@ -110,16 +110,11 @@ export const HTTP_STATUS = {
 
 // Practice Areas
 export const PRACTICE_AREAS = [
-  'Corporate & Commercial Law',
-  'Mergers & Acquisitions (M&A)',
-  'Litigation & Dispute Resolution',
-  'Intellectual Property Law',
-  'Employment & Labor Law',
-  'Real Estate & Property Law',
-  'Banking & Finance Law',
-  'Tax Law',
-  'Regulatory & Compliance Law',
-  'Data Protection & Privacy Law'
+  'Compliance',
+  'Corporate',
+  'Litigation',
+  'Intellectual Property',
+  'Employment'
 ];
 
 // Color Constants

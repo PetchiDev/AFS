@@ -304,8 +304,7 @@ const NewAnalysis = () => {
                   }}
                   placeholder={NEW_ANALYSIS.COMPANY_NAME}
                   className={`${styles.input} ${errors.companyName ? styles.inputError : ''}`}
-                  border={`1.5px solid ${errors.companyName ? '#EE202E' : COLORS.PRIMARY}`}
-                  radius="6px"
+                  border={errors.companyName ? '1.5px solid #EE202E' : undefined}
                   height="44px"
                 />
                 {errors.companyName && <span className={styles.errorText}>{errors.companyName}</span>}
@@ -322,8 +321,7 @@ const NewAnalysis = () => {
                   }}
                   placeholder={NEW_ANALYSIS.COMPANY_EMAIL}
                   className={`${styles.input} ${errors.companyEmail ? styles.inputError : ''}`}
-                  border={`1.5px solid ${errors.companyEmail ? '#EE202E' : COLORS.PRIMARY}`}
-                  radius="6px"
+                  border={errors.companyEmail ? '1.5px solid #EE202E' : undefined}
                   height="44px"
                 />
                 {errors.companyEmail && <span className={styles.errorText}>{errors.companyEmail}</span>}
@@ -341,8 +339,7 @@ const NewAnalysis = () => {
                   }}
                   placeholder={NEW_ANALYSIS.COMPANY_PHONE}
                   className={`${styles.input} ${errors.companyPhone ? styles.inputError : ''}`}
-                  border={`1.5px solid ${errors.companyPhone ? '#EE202E' : COLORS.PRIMARY}`}
-                  radius="6px"
+                  border={errors.companyPhone ? '1.5px solid #EE202E' : undefined}
                   height="44px"
                 />
                 {errors.companyPhone && <span className={styles.errorText}>{errors.companyPhone}</span>}
@@ -358,9 +355,7 @@ const NewAnalysis = () => {
                   }}
                   placeholder={NEW_ANALYSIS.PRACTICE_AREA}
                   className={`${styles.dropdown} ${errors.practiceArea ? styles.dropdownError : ''}`}
-                  border={`1.5px solid ${errors.practiceArea ? '#EE202E' : COLORS.PRIMARY}`}
-                  borderWidth="1.5px"
-                  radius="6px"
+                  border={errors.practiceArea ? '1.5px solid #EE202E' : undefined}
                   height="44px"
                 />
                 {errors.practiceArea && <span className={styles.errorText}>{errors.practiceArea}</span>}
