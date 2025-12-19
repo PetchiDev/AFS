@@ -18,6 +18,10 @@ const NewAnalysis = () => {
   const buttonRef = useRef(null);
   const containerRef = useRef(null);
   const formRef = useRef(null);
+  const headerRef = useRef(null);
+  const row1Ref = useRef(null);
+  const row2Ref = useRef(null);
+  const buttonWrapperRef = useRef(null);
 
   const reportRef = useRef(null);
   
@@ -47,6 +51,18 @@ const NewAnalysis = () => {
        // If loading directly into report
        gsap.set(formRef.current, { display: 'none', opacity: 0 });
        gsap.set(reportRef.current, { display: 'flex', opacity: 1, x: '0%' });
+    } else {
+       // Entrance animation for form
+       const tl = gsap.timeline();
+       tl.fromTo(headerRef.current, 
+         { y: 20, opacity: 0 },
+         { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
+       )
+       .fromTo([row1Ref.current, row2Ref.current, buttonWrapperRef.current],
+         { y: 20, opacity: 0 },
+         { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+         "-=0.4"
+       );
     }
   }, []);
 
@@ -77,10 +93,11 @@ const NewAnalysis = () => {
       ease: 'power2.out'
     });
   };
-  const [companyName, setCompanyName] = useState(initialState.companyName || 'ABC company');
-  const [companyEmail, setCompanyEmail] = useState('ABC@gamil.com');
-  const [companyPhone, setCompanyPhone] = useState('+1 (555) 123-4567');
-  const [practiceArea, setPracticeArea] = useState(initialState.practiceArea || 'Regulatory & Compliance Law');
+  const [companyName, setCompanyName] = useState(initialState.companyName || '');
+  const [companyEmail, setCompanyEmail] = useState('');
+  const [companyPhone, setCompanyPhone] = useState('');
+  const [practiceArea, setPracticeArea] = useState(initialState.practiceArea || '');
+  const [errors, setErrors] = useState({});
   const [includeInternalDocs, setIncludeInternalDocs] = useState(true);
   const [includePublicNews, setIncludePublicNews] = useState(true);
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -144,7 +161,25 @@ const NewAnalysis = () => {
     setUploadedFile(null);
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!companyName.trim()) newErrors.companyName = 'Company Name is required';
+    if (!companyEmail.trim()) {
+      newErrors.companyEmail = 'Company Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(companyEmail)) {
+      newErrors.companyEmail = 'Invalid email format';
+    }
+    if (!companyPhone.trim()) newErrors.companyPhone = 'Phone Number is required';
+    if (!practiceArea) newErrors.practiceArea = 'Practice Area is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleRunAnalysis = () => {
+    if (!validateForm()) {
+      return;
+    }
     console.log('Running analysis...', {
       companyName,
       companyEmail
@@ -247,7 +282,7 @@ const NewAnalysis = () => {
   return (
     <div className={styles.container} ref={containerRef}>
       <div ref={formRef} className={styles.formContainer}>
-        <div className={styles.header}>
+        <div className={styles.header} ref={headerRef}>
           <h1 className={styles.title}>{NEW_ANALYSIS.TITLE}</h1>
           <p className={styles.subtitle}>{NEW_ANALYSIS.SUBTITLE}</p>
         </div>
@@ -258,123 +293,98 @@ const NewAnalysis = () => {
             radius="12px"
           >
             <h2 className={styles.cardTitle}>{NEW_ANALYSIS.COMPANY_INFORMATION}</h2>
-            <div className={styles.formGroup}>
-              <InputField
-                type="text"
-                value={companyName}
-                onChange={handleCompanyNameChange}
-                placeholder={NEW_ANALYSIS.COMPANY_NAME}
-                className={styles.input}
-                border={`1.5px solid ${COLORS.PRIMARY}`}
-                radius="6px"
-                height="44px"
-              />
-              <p className={styles.hint}>{NEW_ANALYSIS.COMPANY_NAME_HINT}</p>
-            </div>
-
-            <div className={styles.formGroup}>
-              <InputField
-                type="email"
-                value={companyEmail}
-                onChange={handleCompanyEmailChange}
-                placeholder={NEW_ANALYSIS.COMPANY_EMAIL}
-                className={styles.input}
-                border={`1.5px solid ${COLORS.PRIMARY}`}
-                radius="6px"
-                height="44px"
-              />
-            </div>
-
-            <div className={styles.formGroup}>
-              <InputField
-                type="tel"
-                value={companyPhone}
-                onChange={handleCompanyPhoneChange}
-                placeholder={NEW_ANALYSIS.COMPANY_PHONE}
-                className={styles.input}
-                border={`1.5px solid ${COLORS.PRIMARY}`}
-                radius="6px"
-                height="44px"
-              />
-            </div>
-
-            <div className={styles.formGroup}>
-              <Dropdown
-                options={practiceAreaOptions}
-                value={practiceArea}
-                onChange={handlePracticeAreaChange}
-                placeholder={NEW_ANALYSIS.PRACTICE_AREA}
-                className={styles.dropdown}
-                border={`1.5px solid ${COLORS.PRIMARY}`}
-                borderWidth="1.5px"
-                radius="6px"
-                height="44px"
-              />
-              <p className={styles.hint}>{NEW_ANALYSIS.PRACTICE_AREA_HINT}</p>
-            </div>
-
-            <Button
-              ref={buttonRef}
-              onClick={handleRunAnalysis}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              variant="primary"
-              className={styles.runButton}
-              icon={<img src={SearchIcon} alt="Search" style={{ width: 30, height: 30, filter: 'brightness(0) invert(1)' }} />}
-              color={COLORS.PRIMARY}
-              textColor={COLORS.WHITE}
-              radius="12px"
-              height="40px"
-              loading={isAnalysisLoading}
-            >
-              {NEW_ANALYSIS.RUN_ANALYSIS}
-            </Button>
-          </Card>
-
-          <Card
-            className={styles.attachmentCard}
-            radius="13.31px"
-          >
-            <h2 className={styles.cardTitle}>{NEW_ANALYSIS.SUPPORTING_ATTACHMENT}</h2>
-            
-            <div className={styles.checkboxGroup}>
-              <Checkbox
-                checked={includeInternalDocs}
-                onChange={handleInternalDocsChange}
-                label={NEW_ANALYSIS.INCLUDE_INTERNAL_DOCS}
-                className={styles.checkbox}
-              />
-            </div>
-
-            {includeInternalDocs && (
-              <div className={styles.fileUploadWrapper}>
-                <FileUpload
-                  onFileSelect={handleFileSelect}
-                  selectedFile={uploadedFile}
-                  onRemove={handleFileRemove}
-                  className={styles.fileUpload}
-                  border={`1.5px dashed ${COLORS.PRIMARY}`}
+            <div className={styles.formRow} ref={row1Ref}>
+              <div className={styles.formGroup}>
+                <InputField
+                  type="text"
+                  value={companyName}
+                  onChange={(e) => {
+                    handleCompanyNameChange(e);
+                    if (errors.companyName) setErrors({ ...errors, companyName: '' });
+                  }}
+                  placeholder={NEW_ANALYSIS.COMPANY_NAME}
+                  className={`${styles.input} ${errors.companyName ? styles.inputError : ''}`}
+                  border={`1.5px solid ${errors.companyName ? '#EE202E' : COLORS.PRIMARY}`}
                   radius="6px"
+                  height="44px"
                 />
+                {errors.companyName && <span className={styles.errorText}>{errors.companyName}</span>}
+                {!errors.companyName && <p className={styles.hint}>{NEW_ANALYSIS.COMPANY_NAME_HINT}</p>}
               </div>
-            )}
 
-            <div className={styles.checkboxGroup}>
-              <Checkbox
-                checked={includePublicNews}
-                onChange={handlePublicNewsChange}
-                label={NEW_ANALYSIS.INCLUDE_PUBLIC_NEWS}
-                className={styles.checkbox}
-              />
+              <div className={styles.formGroup}>
+                <InputField
+                  type="email"
+                  value={companyEmail}
+                  onChange={(e) => {
+                    handleCompanyEmailChange(e);
+                    if (errors.companyEmail) setErrors({ ...errors, companyEmail: '' });
+                  }}
+                  placeholder={NEW_ANALYSIS.COMPANY_EMAIL}
+                  className={`${styles.input} ${errors.companyEmail ? styles.inputError : ''}`}
+                  border={`1.5px solid ${errors.companyEmail ? '#EE202E' : COLORS.PRIMARY}`}
+                  radius="6px"
+                  height="44px"
+                />
+                {errors.companyEmail && <span className={styles.errorText}>{errors.companyEmail}</span>}
+              </div>
             </div>
 
-            <div className={styles.checkboxGroup}>
-              <Checkbox
-                checked={usePastMatters}
-                onChange={handlePastMattersChange}
-                label={NEW_ANALYSIS.USE_PAST_MATTERS}
-                className={styles.checkbox}
-              />
+            <div className={styles.formRow} ref={row2Ref}>
+              <div className={styles.formGroup}>
+                <InputField
+                  type="tel"
+                  value={companyPhone}
+                  onChange={(e) => {
+                    handleCompanyPhoneChange(e);
+                    if (errors.companyPhone) setErrors({ ...errors, companyPhone: '' });
+                  }}
+                  placeholder={NEW_ANALYSIS.COMPANY_PHONE}
+                  className={`${styles.input} ${errors.companyPhone ? styles.inputError : ''}`}
+                  border={`1.5px solid ${errors.companyPhone ? '#EE202E' : COLORS.PRIMARY}`}
+                  radius="6px"
+                  height="44px"
+                />
+                {errors.companyPhone && <span className={styles.errorText}>{errors.companyPhone}</span>}
+              </div>
+
+              <div className={styles.formGroup}>
+                <Dropdown
+                  options={practiceAreaOptions}
+                  value={practiceArea}
+                  onChange={(e) => {
+                    handlePracticeAreaChange(e);
+                    if (errors.practiceArea) setErrors({ ...errors, practiceArea: '' });
+                  }}
+                  placeholder={NEW_ANALYSIS.PRACTICE_AREA}
+                  className={`${styles.dropdown} ${errors.practiceArea ? styles.dropdownError : ''}`}
+                  border={`1.5px solid ${errors.practiceArea ? '#EE202E' : COLORS.PRIMARY}`}
+                  borderWidth="1.5px"
+                  radius="6px"
+                  height="44px"
+                />
+                {errors.practiceArea && <span className={styles.errorText}>{errors.practiceArea}</span>}
+                {!errors.practiceArea && <p className={styles.hint}>{NEW_ANALYSIS.PRACTICE_AREA_HINT}</p>}
+              </div>
+            </div>
+
+            <div className={styles.buttonWrapper} ref={buttonWrapperRef}>
+              <Button
+                ref={buttonRef}
+                onClick={handleRunAnalysis}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                variant="primary"
+                className={styles.runButton}
+                icon={<img src={SearchIcon} alt="Search" style={{ width: 30, height: 30, filter: 'brightness(0) invert(1)' }} />}
+                color={COLORS.PRIMARY}
+                textColor={COLORS.WHITE}
+                radius="12px"
+                height="40px"
+                loading={isAnalysisLoading}
+              >
+                {NEW_ANALYSIS.RUN_ANALYSIS}
+              </Button>
             </div>
           </Card>
         </div>

@@ -1,6 +1,6 @@
 .container {
   padding: 0;
-  background-color: #fff;
+  background-color: transparent;
   width: 100%;
 }
 
@@ -26,7 +26,7 @@
 
 .description {
   font-size: 14px;
-  color: #666;
+  color: #64748B;
   margin: 0;
 }
 
@@ -43,35 +43,137 @@
   align-items: center;
   border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 8px 16px;
-  background-color: #FFFFFF;
+  padding: 12px 20px;
+  background-color: #E2E8F0;
+  /* Second image look */
 }
 
 .searchContainer {
-  flex: 2;
-  min-width: 280px;
+  flex: 1.5;
+  min-width: 250px;
   position: relative;
 }
 
-.filterDropdown {
-  min-width: 200px;
-  flex: 1;
+.searchIconWrapper {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .searchInput {
-  padding-left: 40px !important;
-  height: 48px;
-  width: 100%;
-  border: none !important;
-  border-radius: 6px !important;
-  background-color: transparent !important;
+  padding-left: 42px !important;
+  background-color: #FFFFFF !important;
+}
+
+.filterDropdown {
+  flex: 1;
+  min-width: 180px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Default to 3 columns as per image */
   gap: 24px;
+}
+
+.card {
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #64748B;
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.role {
+  font-size: 13px;
+  color: #64748B;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.details {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.detailValue {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.viewProfileButton {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  height: 40px;
+  color: #1e1e1e;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewProfileButton:hover {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
 }
 
 /* Responsive adjustments */
@@ -82,21 +184,15 @@
 }
 
 @media (max-width: 992px) {
-
-  /* Tablet/Smaller Desktop */
-  .searchContainer {
-    min-width: 100%;
-    /* Force search to full width on intermediate screens if crowded */
-    flex-basis: 100%;
-    order: -1;
-    /* Keep search at top */
-  }
-
   .filterBar {
     gap: 12px;
+    padding: 12px;
+  }
+
+  .searchContainer {
+    flex-basis: 100%;
   }
 }
-
 
 @media (max-width: 768px) {
   .grid {
@@ -105,117 +201,24 @@
 
   .header {
     flex-direction: column;
-    align-items: stretch;
-  }
-
-  .titleSection {
-    margin-bottom: 16px;
   }
 
   .actions {
     width: 100%;
-    justify-content: space-between;
-    /* Spread buttons */
-    overflow-x: auto;
-    /* Allow scroll if buttons are too wide */
+    margin-top: 12px;
   }
 
-  .filterBar {
-    flex-direction: column;
-    align-items: stretch;
-    /* Full width items */
-  }
-
-  .searchContainer,
   .filterDropdown {
-    width: 100%;
-    min-width: 0;
-    /* Reset min-width constraint */
+    flex-basis: 48%;
   }
 }
 
-/* Card Styles */
-.card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  transition: box-shadow 0.2s ease;
-}
+@media (max-width: 480px) {
+  .filterDropdown {
+    flex-basis: 100%;
+  }
 
-.card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #f0f4f8;
-  /* Light gray/blueish */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: 600;
-  color: #5d6d7e;
-  margin-bottom: 16px;
-}
-
-.name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 4px;
-  text-align: center;
-}
-
-.role {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.details {
-  width: 100%;
-  margin-bottom: 24px;
-}
-
-.detailItem {
-  margin-bottom: 12px;
-}
-
-.detailLabel {
-  display: block;
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 4px;
-}
-
-.detailValue {
-  font-size: 14px;
-  color: #333;
-  font-weight: 500;
-}
-
-.viewProfileButton {
-  width: 100%;
-  background: transparent;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 10px;
-  color: #1a1a1a;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.viewProfileButton:hover {
-  background-color: #f9f9f9;
-  border-color: #d0d0d0;
+  .actions {
+    flex-direction: column;
+  }
 }

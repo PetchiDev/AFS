@@ -129,16 +129,19 @@ const AttorneyDirectory = () => {
 
       <div className={styles.filterBar}>
         <div className={styles.searchContainer}>
-            <div style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', zIndex: 1 }}>
-                <SearchIcon />
-            </div>
-            <InputField 
-                placeholder="Search attorney..." 
-                value={searchQuery}
-                onChange={handleSearchChange}
-                width="100%"
-                className={styles.searchInput}
-            />
+          <div className={styles.searchIconWrapper}>
+            <SearchIcon />
+          </div>
+          <InputField 
+            placeholder="Search attorney..." 
+            value={searchQuery}
+            onChange={handleSearchChange}
+            width="100%"
+            height="44px"
+            className={styles.searchInput}
+            border="1px solid #E2E8F0"
+            radius="8px"
+          />
         </div>
         
         <div className={styles.filterDropdown}>
@@ -147,8 +150,10 @@ const AttorneyDirectory = () => {
             value={selectedPractice} 
             onChange={handlePracticeChange} 
             placeholder="All Practice Areas"
-            backgroundColor="transparent"
-            border="none"
+            backgroundColor="#FFFFFF"
+            border="1px solid #E2E8F0"
+            radius="8px"
+            height="44px"
           />
         </div>
 
@@ -158,8 +163,10 @@ const AttorneyDirectory = () => {
             value={selectedRole} 
             onChange={handleRoleChange} 
             placeholder="All Roles"
-            backgroundColor="transparent"
-            border="none"
+            backgroundColor="#FFFFFF"
+            border="1px solid #E2E8F0"
+            radius="8px"
+            height="44px"
           />
         </div>
 
@@ -169,8 +176,10 @@ const AttorneyDirectory = () => {
             value={sortBy} 
             onChange={handleSortChange}
             placeholder="Sort By" 
-            backgroundColor="transparent"
-            border="none"
+            backgroundColor="#FFFFFF"
+            border="1px solid #E2E8F0"
+            radius="8px"
+            height="44px"
            />
         </div>
       </div>

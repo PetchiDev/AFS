@@ -31,45 +31,55 @@
 }
 
 .companyCard {
-  width: 576px;
-  min-height: 559px;
-  padding: 24px;
+  width: 100%;
+  max-width: 1100px;
+  min-height: auto;
+  padding: 32px;
   background-color: var(--color-bg-primary, #FFFFFF);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .attachmentCard {
-  width: 485px;
-  min-height: 389px;
-  padding: 24px;
-  background-color: var(--color-bg-primary, #FFFFFF);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: none;
 }
 
 .cardTitle {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-text-primary, #212529);
   font-family: var(--font-family-primary);
   margin-bottom: 8px;
 }
 
+.formRow {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.formRow:nth-child(2) {
+  z-index: 10;
+  /* First row higher */
+}
+
+.formRow:nth-child(3) {
+  z-index: 5;
+  /* Second row still higher than button */
+}
+
 .formGroup {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
 .input {
   width: 100%;
-  max-width: 526.67px;
-  height: 44px;
-  width: 100%;
-  max-width: 526.67px;
   height: 44px;
   padding: 0 16px;
   font-size: 14px;
@@ -91,7 +101,6 @@
 
 .dropdown {
   width: 100%;
-  max-width: 526.67px;
   height: 44px;
 }
 
@@ -102,10 +111,18 @@
   margin-top: 4px;
 }
 
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
+}
+
 .runButton {
-  width: 527px;
-  max-width: 100%;
-  height: 40px;
+  width: 100%;
+  max-width: 527px;
+  height: 48px;
   border-radius: 12px;
   border: none;
   background-color: var(--color-primary, #EE202E);
@@ -113,7 +130,6 @@
   font-size: 18px;
   font-weight: 500;
   font-family: var(--font-family-primary);
-  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,6 +141,21 @@
 
 .runButton:hover:not(:disabled) {
   background-color: rgba(238, 32, 46, 0.9);
+}
+
+.errorText {
+  color: #EE202E;
+  font-size: 12px;
+  margin-top: 4px;
+  font-family: var(--font-family-primary);
+}
+
+.inputError {
+  border-color: #EE202E !important;
+}
+
+.dropdownError :global(.dropdown-container) {
+  border-color: #EE202E !important;
 }
 
 .checkboxGroup {
@@ -149,21 +180,14 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .content {
+@media (max-width: 1024px) {
+  .formRow {
     flex-direction: column;
+    gap: 16px;
   }
 
-  .companyCard,
-  .attachmentCard {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .input,
-  .dropdown,
-  .runButton {
-    max-width: 100%;
+  .companyCard {
+    padding: 24px;
   }
 }
 
