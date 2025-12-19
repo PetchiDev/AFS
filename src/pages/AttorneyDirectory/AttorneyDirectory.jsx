@@ -4,6 +4,7 @@ import { ROUTES } from '@/config/constants';
 import Button from '@/components/common/Button';
 import Dropdown from '@/components/common/Dropdown';
 import InputField from '@/components/common/InputField';
+import AddAttorneyModal from '@/components/features/Attorney/AddAttorneyModal';
 import styles from './AttorneyDirectory.module.css';
 
 import { MOCK_ATTORNEYS } from '@/data/mockAttorneys';
@@ -32,31 +33,31 @@ const SORT_OPTIONS = [
 ];
 
 // Icons
-const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M21 21L16.65 16.65" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+const SearchIcon = ({ size = 16, color = '#888' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M21 21L16.65 16.65" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
-const ExportIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+const ExportIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M4 16V17C4 17.7956 4.31607 18.5587 4.87868 19.1213C5.44129 19.6839 6.20435 20 7 20H17C17.7956 20 18.5587 19.6839 19.1213 19.1213C19.6839 18.5587 20 17.7956 20 17V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M12 4V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M8 8L12 12L16 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
-const ImportIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 16V17C4 17.7956 4.31607 18.5587 4.87868 19.1213C5.44129 19.6839 6.20435 20 7 20H17C17.7956 20 18.5587 19.6839 19.1213 19.1213C19.6839 18.5587 20 17.7956 20 17V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M12 12V4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M8 8L12 4L16 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
+const ImportIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 16V17C4 17.7956 4.31607 18.5587 4.87868 19.1213C5.44129 19.6839 6.20435 20 7 20H17C17.7956 20 18.5587 19.6839 19.1213 19.1213C19.6839 18.5587 20 17.7956 20 17V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M12 12V4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8 8L12 4L16 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
-const PlusIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+const PlusIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
@@ -67,6 +68,7 @@ const AttorneyDirectory = () => {
   const [selectedPractice, setSelectedPractice] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
   const [sortBy, setSortBy] = useState('name_asc');
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -113,6 +115,12 @@ const AttorneyDirectory = () => {
     navigate({ to: ROUTES.ATTORNEY_PROFILE.replace('$attorneyId', attorneyId) });
   };
 
+  const handleAddAttorney = (newAttorney) => {
+    console.log('Adding new attorney:', newAttorney);
+    // In a real app, this would call an API
+    setIsAddModalOpen(false);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -121,16 +129,28 @@ const AttorneyDirectory = () => {
           <p className={styles.description}>Browse and filter internal attorneys by practice area, expertise, or seniority.</p>
         </div>
         <div className={styles.actions}>
-          <Button variant="danger" icon={<PlusIcon />}>Add Attorney</Button>
-          <Button variant="white" icon={<ExportIcon />}>Export</Button>
-          <Button variant="white" icon={<ImportIcon />}>Import</Button>
+          <Button 
+            variant="danger" 
+            icon={<PlusIcon size={20} />}
+            onClick={() => setIsAddModalOpen(true)}
+          >
+            Add Attorney
+          </Button>
+          <Button variant="white" icon={<ExportIcon size={18} />}>Export</Button>
+          <Button variant="white" icon={<ImportIcon size={18} />}>Import</Button>
         </div>
       </div>
+
+      <AddAttorneyModal 
+        isOpen={isAddModalOpen} 
+        onClose={() => setIsAddModalOpen(false)} 
+        onAdd={handleAddAttorney}
+      />
 
       <div className={styles.filterBar}>
         <div className={styles.searchContainer}>
           <div className={styles.searchIconWrapper}>
-            <SearchIcon />
+            <SearchIcon size={20} />
           </div>
           <InputField 
             placeholder="Search attorney..." 

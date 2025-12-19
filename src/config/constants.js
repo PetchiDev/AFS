@@ -352,3 +352,26 @@ export const EMAIL_DRAFTS_CONSTANTS = {
   }
 };
 
+// Add Attorney Form Constants
+export const ADD_ATTORNEY = {
+  TITLE: 'Add New Attorney',
+  PROFILE_PICTURE: 'Profile picture (optional)',
+  PROFILE_PICTURE_HINT: 'Click to upload or drag and drop\nJPG, PNG (MAX. 5MB)',
+  FULL_NAME: 'Enter Full Name',
+  FULL_NAME_PLACEHOLDER: 'Maria Chen',
+  PRACTICE_AREA: 'Practice Area',
+  PRACTICE_AREA_PLACEHOLDER: 'Select Practice Area',
+  EXPERTISE: 'Expertise',
+  EXPERTISE_PLACEHOLDER: 'Add Expertise',
+  PAST_MATTERS: 'Past Matters',
+  PAST_MATTERS_PLACEHOLDER: '0',
+  PHONE_NUMBER: 'Phone Number',
+  PHONE_NUMBER_PLACEHOLDER: 'Enter phone number',
+  EMAIL_ID: 'Email ID',
+  EMAIL_ID_PLACEHOLDER: 'Enter email ID',
+  LOCATION: 'Location',
+  LOCATION_PLACEHOLDER: 'Enter Location',
+  CANCEL: 'Cancel',
+  ADD: 'Add',
+  ADD_EXPERTISE: 'ADD'
+};

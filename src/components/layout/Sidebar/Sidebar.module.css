@@ -245,7 +245,8 @@
   }
 
   .logoContainer {
-    padding: 20px 0 20px 24px;
+    padding: 20px 0 20px 60px;
+    /* Increased left padding to clear toggle button */
     margin-bottom: 24px;
   }
 
@@ -294,7 +295,8 @@
   }
 
   .logoContainer {
-    padding: 16px 0 16px 20px;
+    padding: 16px 0 16px 56px;
+    /* Increased left padding to clear toggle button */
     margin-bottom: 20px;
   }
 
@@ -345,7 +347,8 @@
   }
 
   .logoContainer {
-    padding: 12px 0 12px 16px;
+    padding: 12px 0 12px 52px;
+    /* Increased left padding to clear toggle button */
     margin-bottom: 16px;
   }
 
@@ -401,7 +404,8 @@
   }
 
   .logoContainer {
-    padding: 10px 0 10px 12px;
+    padding: 10px 0 10px 48px;
+    /* Increased left padding to clear toggle button */
     margin-bottom: 12px;
   }
 
