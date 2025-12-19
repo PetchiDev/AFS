@@ -210,6 +210,38 @@ export const REPORT_FILTERS = {
   SORT_OPTIONS: ['Latest First', 'Oldest First']
 };
 
+// Help & Resources Constants
+export const HELP_RESOURCES = {
+  TITLE: 'Help & Resources',
+  SUBTITLE: 'Find documentation, tutorials, and support for the AFS Collaboration Hub.',
+  CARDS: {
+    HOW_IT_WORKS: {
+      TITLE: 'How It Works',
+      DESCRIPTION: 'Learn how to run an analysis and understand the generated report.',
+      BUTTON_TEXT: 'Learn More',
+      ICON_TYPE: 'lightbulb'
+    },
+    UNDERSTANDING_REPORT: {
+      TITLE: 'Understanding the Report',
+      DESCRIPTION: 'Explanation of risk areas, confidence score, and attorney recommendations.',
+      BUTTON_TEXT: 'Learn More',
+      ICON_TYPE: 'document'
+    },
+    FAQS: {
+      TITLE: 'FAQs',
+      DESCRIPTION: 'Answers to commonly asked questions.',
+      BUTTON_TEXT: 'Learn More',
+      ICON_TYPE: 'question'
+    },
+    CONTACT_SUPPORT: {
+      TITLE: 'Contact Support',
+      DESCRIPTION: 'Reach out to the internal support team for assistance.',
+      BUTTON_TEXT: 'Learn More',
+      ICON_TYPE: 'support'
+    }
+  }
+};
+
 export const MOCK_REPORTS_DATA = [
   {
     companyName: 'Acme Manufacturing',
@@ -252,6 +284,53 @@ export const MOCK_REPORTS_DATA = [
     date: 'Jan 03, 2024',
     confidence: 76,
     id: 6
+  }
+];
+
+// Customer Details Constants
+export const CUSTOMER_DETAILS_CONSTANTS = {
+  TITLE: 'Customer Details',
+  SUBTITLE: 'View customer contact information created within the system.',
+  TABLE_HEADERS: {
+    SNO: 'S.NO',
+    CUSTOMER_NAME: 'Customer Name',
+    PHONE_NUMBER: 'Phone Number',
+    CREATED_ON: 'Created On',
+    ACTION: 'Action'
+  },
+  ACTIONS: {
+    DELETE: 'Delete'
+  },
+  MODAL: {
+    CONFIRM_TITLE: 'Confirm Delete',
+    CONFIRM_MESSAGE: 'Are you Confirm to delete',
+    CANCEL_BUTTON: 'Cancel',
+    OK_BUTTON: 'Ok'
+  }
+};
+
+// Mock Customer Data
+export const MOCK_CUSTOMERS_DATA = [
+  {
+    id: 1,
+    sno: '01',
+    customerName: 'Acme Manufacturing',
+    phoneNumber: '+91 98765 4321',
+    createdOn: '12 Jan 2025'
+  },
+  {
+    id: 2,
+    sno: '02',
+    customerName: 'Orion Industries',
+    phoneNumber: '+91 98765 4321',
+    createdOn: '10 Jan 2025'
+  },
+  {
+    id: 3,
+    sno: '03',
+    customerName: 'Global Tech Ltd.',
+    phoneNumber: '+91 98765 4321',
+    createdOn: '08 Jan 2025'
   }
 ];
 

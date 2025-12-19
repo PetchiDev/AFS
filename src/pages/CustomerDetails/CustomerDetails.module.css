@@ -1,22 +1,396 @@
+/* Container */
 .container {
-  padding: 24px;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg-primary, #FFFFFF);
+  width: 100%;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .title {
   font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #1F2937;
+  font-weight: 700;
+  color: var(--color-text-primary, #111827);
+  font-family: var(--font-family-primary);
+  margin: 0;
+  line-height: 1.3;
 }
 
-.description {
-  font-size: 16px;
-  color: #6B7280;
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary, #6B7280);
+  font-family: var(--font-family-primary);
+  line-height: 1.5;
+  margin: 0;
 }
 
-.loading {
-  padding: 24px;
+/* Table Wrapper */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Action Cell */
+.actionCell {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Delete Button */
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  border: 1px solid #FECACA;
+  color: var(--color-primary, #EE202E);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-family-primary);
+}
+
+.deleteBtn:hover {
+  background-color: #FEF2F2;
+  border-color: #F87171;
+}
+
+.deleteBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 32, 46, 0.15);
+}
+
+/* Empty State */
+.emptyState {
   text-align: center;
-  color: #6B7280;
+  padding: 48px;
+  color: var(--color-text-secondary, #6B7280);
+  font-size: 16px;
+  font-family: var(--font-family-primary);
 }
 
+/* Loading State */
+.loading {
+  padding: 48px;
+  text-align: center;
+  color: var(--color-text-secondary, #6B7280);
+  font-size: 16px;
+  font-family: var(--font-family-primary);
+}
+
+/* ============================================
+   MODAL STYLES
+   ============================================ */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modalContent {
+  background: #FFFFFF;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: modalFadeIn 0.2s ease-out;
+  overflow: hidden;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modalBody {
+  padding: 32px 28px 24px 28px;
+  text-align: center;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary, #111827);
+  font-family: var(--font-family-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modalCustomerName {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-secondary, #6B7280);
+  font-family: var(--font-family-primary);
+  margin: 8px 0 0 0;
+}
+
+.modalFooter {
+  padding: 16px 28px 28px 28px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  background: #FFFFFF;
+  color: var(--color-text-primary, #374151);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  transition: all 0.2s ease;
+}
+
+.cancelBtn:hover {
+  background-color: #F9FAFB;
+  border-color: #D1D5DB;
+}
+
+.cancelBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.okBtn {
+  flex: 1;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: var(--color-primary, #EE202E);
+  border: none;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  transition: background-color 0.2s ease;
+}
+
+.okBtn:hover {
+  background-color: #D61B29;
+}
+
+.okBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(238, 32, 46, 0.3);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Large Desktop (1440px+)
+   ============================================ */
+@media (min-width: 1440px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Tablet (992px and below)
+   ============================================ */
+@media (max-width: 992px) {
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Mobile Landscape (768px and below)
+   ============================================ */
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .deleteBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* Modal Adjustments */
+  .modalContent {
+    max-width: 90%;
+  }
+
+  .modalBody {
+    padding: 24px 20px 20px 20px;
+  }
+
+  .modalTitle {
+    font-size: 16px;
+  }
+
+  .modalCustomerName {
+    font-size: 14px;
+  }
+
+  .modalFooter {
+    padding: 12px 20px 24px 20px;
+    gap: 10px;
+  }
+
+  .cancelBtn,
+  .okBtn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Mobile (480px and below)
+   ============================================ */
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 12px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .deleteBtn {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .deleteBtn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .emptyState {
+    padding: 32px 16px;
+    font-size: 14px;
+  }
+
+  /* Modal Adjustments */
+  .modalOverlay {
+    padding: 12px;
+  }
+
+  .modalContent {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .modalBody {
+    padding: 20px 16px 16px 16px;
+  }
+
+  .modalTitle {
+    font-size: 15px;
+  }
+
+  .modalCustomerName {
+    font-size: 13px;
+  }
+
+  .modalFooter {
+    padding: 12px 16px 20px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cancelBtn,
+  .okBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Small Mobile (360px and below)
+   ============================================ */
+@media (max-width: 360px) {
+  .title {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 11px;
+  }
+
+  .deleteBtn {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .deleteBtn svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .modalTitle {
+    font-size: 14px;
+  }
+
+  .modalCustomerName {
+    font-size: 12px;
+  }
+
+  .cancelBtn,
+  .okBtn {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

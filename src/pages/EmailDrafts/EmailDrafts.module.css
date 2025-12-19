@@ -1,22 +1,396 @@
 .container {
-  padding: 24px;
+  padding: 32px;
+  max-width: 1400px;
+  /* Increased max-width for better view on large screens */
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+  /* Prevent horizontal scroll during animation */
+}
+
+/* List View Styles */
+.header {
+  margin-bottom: 32px;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 28px;
+  /* Increased size to match detail view */
   font-weight: 600;
-  margin-bottom: 16px;
-  color: #1F2937;
+  color: #111827;
+  margin-bottom: 8px;
+  font-family: var(--font-family-primary);
 }
 
 .description {
   font-size: 16px;
   color: #6B7280;
+  font-family: var(--font-family-primary);
+}
+
+.searchContainer {
+  margin-bottom: 24px;
+}
+
+.searchInput {
+  background-color: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.tableCard {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 0 !important;
 }
 
 .loading {
-  padding: 24px;
+  padding: 48px;
   text-align: center;
   color: #6B7280;
 }
 
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: opacity 0.2s;
+  color: #DC2626;
+  font-weight: 500;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.actionButton:hover {
+  opacity: 0.8;
+}
+
+.actionIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.actionText {
+  font-size: 14px;
+}
+
+/* Detail View Styles (Copied/Adapted from ReportView) */
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  padding: 0 32px;
+  /* Match container padding */
+  display: none;
+  /* Hidden by default */
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  color: #65758B;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin-bottom: 24px;
+  font-family: var(--font-family-primary);
+  width: fit-content;
+}
+
+.backButton:hover {
+  color: #EE202E;
+}
+
+.detailHeader {
+  margin-bottom: 32px;
+}
+
+.detailSubtitle {
+  font-size: 16px;
+  color: #65758B;
+  font-family: var(--font-family-primary);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.detailContent {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.emailEditorCard {
+  background: #FFFFFF;
+  padding: 32px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 600px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #F1F5F9;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 320px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebarCard {
+  background: #FFFFFF;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: 1px solid #F1F5F9;
+}
+
+.sidebarTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding-bottom: 12px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.summaryLabel {
+  color: #64748B;
+  font-weight: 500;
+  width: 50%;
+}
+
+.summaryValue {
+  font-weight: 600;
+  color: #212529;
+  text-align: right;
+  width: 50%;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 8px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  padding: 16px 20px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-family: var(--font-family-primary);
+  font-size: 15px;
+  color: #212529;
+  resize: vertical;
+  line-height: 1.6;
+  background-color: #FAFAFA;
+  transition: all 0.2s;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #EE202E;
+  background-color: #FFFFFF;
+}
+
+.emailActions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 24px;
+}
+
+.secondaryActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #212529;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: fit-content;
+}
+
+.secondaryActionButton:hover {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
+}
+
+.primaryActionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  height: 40px;
+  background-color: #EE202E;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-left: auto;
+}
+
+.primaryActionButton:hover {
+  background-color: rgba(238, 32, 46, 0.9);
+}
+
+.pastMatters {
+  font-size: 13px;
+  color: #64748B;
+  margin-top: -4px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Attorney Profile in Sidebar */
+.attorneyProfile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.attorneyAvatar {
+  width: 56px;
+  height: 56px;
+  background-color: #F1F5F9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748B;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.attorneyInfo h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+}
+
+.attorneyInfo p {
+  font-size: 12px;
+  color: #65758B;
+  margin: 4px 0 0 0;
+}
+
+.viewProfileLinkData {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #212529;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.viewProfileLinkData:hover {
+  background-color: #F8F9FA;
+  border-color: #CBD5E1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .detailContent {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .detailContainer {
+    padding: 0 16px;
+    top: 16px;
+  }
+
+  .emailActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryActionButton {
+    margin-left: 0;
+  }
+}
