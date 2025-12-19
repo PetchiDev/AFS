@@ -6,7 +6,7 @@
 
 .header {
   display: flex;
-  justify_content: space-between;
+  justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 24px;
   flex-wrap: wrap;
@@ -41,15 +41,16 @@
   margin-bottom: 32px;
   flex-wrap: wrap;
   align-items: center;
-  /* Ensure items are vertically centered */
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 8px 16px;
+  background-color: #FFFFFF;
 }
 
 .searchContainer {
   flex: 2;
-  /* Give search slightly more weight/width preference */
   min-width: 280px;
   position: relative;
-  /* Context for absolute icon */
 }
 
 .filterDropdown {
@@ -59,10 +60,11 @@
 
 .searchInput {
   padding-left: 40px !important;
-  /* Ensure space for icon */
   height: 48px;
-  /* Force height to match Dropdowns on larger screens if needed, or stick to auto if min-height handles it */
   width: 100%;
+  border: none !important;
+  border-radius: 6px !important;
+  background-color: transparent !important;
 }
 
 .grid {

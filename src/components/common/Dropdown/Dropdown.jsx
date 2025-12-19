@@ -31,6 +31,7 @@ const Dropdown = ({
   radius = null,
   borderWidth = null,
   border = null,
+  backgroundColor = null,
   className = '',
   ...rest
 }) => {
@@ -121,6 +122,7 @@ const Dropdown = ({
   if (radius !== null) innerStyles.borderRadius = radius;
   if (borderWidth !== null) innerStyles.borderWidth = borderWidth;
   if (border) innerStyles.border = border;
+  if (backgroundColor) innerStyles.backgroundColor = backgroundColor;
 
   const containerClasses = [
     styles.dropdownWrapper,
@@ -212,6 +214,7 @@ Dropdown.propTypes = {
   radius: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   borderWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   border: PropTypes.string,
+  backgroundColor: PropTypes.string,
   className: PropTypes.string
 };
 

@@ -147,6 +147,8 @@ const AttorneyDirectory = () => {
             value={selectedPractice} 
             onChange={handlePracticeChange} 
             placeholder="All Practice Areas"
+            backgroundColor="transparent"
+            border="none"
           />
         </div>
 
@@ -156,6 +158,8 @@ const AttorneyDirectory = () => {
             value={selectedRole} 
             onChange={handleRoleChange} 
             placeholder="All Roles"
+            backgroundColor="transparent"
+            border="none"
           />
         </div>
 
@@ -165,6 +169,8 @@ const AttorneyDirectory = () => {
             value={sortBy} 
             onChange={handleSortChange}
             placeholder="Sort By" 
+            backgroundColor="transparent"
+            border="none"
            />
         </div>
       </div>

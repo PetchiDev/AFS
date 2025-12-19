@@ -12,6 +12,8 @@ import styles from './NewAnalysis.module.css';
 import SearchIcon from '@/assets/icons/Search.svg';
 import ReportView from '@/components/features/Analysis/ReportView';
 
+import { useRunAnalysis } from '@/hooks/useAnalysis';
+
 const NewAnalysis = () => {
   const buttonRef = useRef(null);
   const containerRef = useRef(null);
@@ -103,6 +105,8 @@ const NewAnalysis = () => {
       ]
   } : null);
 
+  const { mutate: runAnalysis, isPending: isAnalysisLoading } = useRunAnalysis();
+
   const handleCompanyNameChange = (event) => {
     setCompanyName(event.target.value);
   };
@@ -146,49 +150,66 @@ const NewAnalysis = () => {
       companyEmail
     });
 
-    // Mock Analysis Result
-    setAnalysisResult({
-      score: 92,
-      risks: [
-        "Environmental compliance gaps",
-        "Supplier contract exposure",
-        "Employee misclassification risk"
-      ],
-      attorney: {
-        name: "A.K. Raman",
-        title: "Partner, Corporate",
-        initials: "AR",
-        pastMatters: 16
-      },
-      evidence: [
-        { label: "Regulatory Filing", action: "View" },
-        { label: "News Article", action: "View" },
-        { label: "Internal Doc", action: "Open" }
-      ]
-    });
+    const payload = {
+      companyName,
+      companyemail: companyEmail,
+      companyphonenumber: companyPhone,
+      practicearea: practiceArea
+    };
 
-    const tl = gsap.timeline();
-    
-    // Ensure report is visible for animation
-    gsap.set(reportRef.current, { display: 'flex' });
-    
-    tl.to(formRef.current, {
-      x: '-20%',
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut',
-      onComplete: () => {
-        gsap.set(formRef.current, { display: 'none' });
+    runAnalysis(payload, {
+      onSuccess: (data) => {
+        // Map API response to internal format
+        const mappedResult = {
+          score: Math.round(data.confidence_score || 0),
+          risks: data.risks || [],
+          attorney: {
+            name: data.recommended_attorney?.name || 'Unknown Attorney',
+            title: data.recommended_attorney?.role || 'Associate',
+            initials: data.recommended_attorney?.name 
+              ? data.recommended_attorney.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() 
+              : 'XX',
+            pastMatters: 18, // Mock value as API doesn't provide this yet
+            email: data.recommended_attorney?.email
+          },
+          evidence: data.references?.map(ref => ({
+            label: ref.label,
+            action: 'View',
+            url: ref.url
+          })) || [],
+          email_template: data.email_template
+        };
+
+        setAnalysisResult(mappedResult);
+
+        const tl = gsap.timeline();
+        
+        // Ensure report is visible for animation
+        gsap.set(reportRef.current, { display: 'flex' });
+        
+        tl.to(formRef.current, {
+          x: '-20%',
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            gsap.set(formRef.current, { display: 'none' });
+          }
+        })
+        .fromTo(reportRef.current, 
+          { x: '100%', opacity: 0 },
+          { x: '0%', opacity: 1, duration: 0.5, ease: 'power2.out' },
+          "-=0.2"
+        );
+        
+        setShowReport(true);
+        updateUrl('report');
+      },
+      onError: (error) => {
+        console.error('Analysis failed:', error);
+        alert(`Analysis failed: ${error.message}`);
       }
-    })
-    .fromTo(reportRef.current, 
-      { x: '100%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 0.5, ease: 'power2.out' },
-      "-=0.2"
-    );
-    
-    setShowReport(true);
-    updateUrl('report');
+    });
   };
 
   const handleBack = () => {
@@ -304,6 +325,7 @@ const NewAnalysis = () => {
               textColor={COLORS.WHITE}
               radius="12px"
               height="40px"
+              loading={isAnalysisLoading}
             >
               {NEW_ANALYSIS.RUN_ANALYSIS}
             </Button>

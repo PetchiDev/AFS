@@ -24,7 +24,7 @@ const ReportView = ({
     
     // Email Draft State
     const [emailSubject, setEmailSubject] = useState(`Re: Compliance risks identified for ${companyName || 'the company'}`);
-    const [emailBody, setEmailBody] = useState(`Hi A.K. ${companyName},
+    const [emailBody, setEmailBody] = useState(analysisResult?.email_template || `Hi A.K. ${companyName},
 
 Our analysis for ${companyName} identified three key compliance-related risks:
 • Environmental permit gaps
@@ -37,6 +37,12 @@ Please let me know if you'd like a meeting arranged.
 
 Regards,
 John`);
+
+    useEffect(() => {
+        if (analysisResult?.email_template) {
+            setEmailBody(analysisResult.email_template);
+        }
+    }, [analysisResult]);
 
     useEffect(() => {
         // Initial animation or state set
@@ -204,7 +210,7 @@ John`);
                             {analysisResult?.evidence?.map((item, index) => (
                                 <div key={index} className={styles.evidenceItem}>
                                     <span>{item.label}</span>
-                                    <a href="#" className={styles.viewLink}>[{item.action}]</a>
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.viewLink}>[{item.action}]</a>
                                 </div>
                             ))}
                         </div>
@@ -251,18 +257,18 @@ John`);
                         
                         <div className={styles.emailActions}>
                             <button className={styles.secondaryActionButton}>
-                                <img src={CopyIcon} alt="Copy" style={{ width: 16, height: 16 }} />
+                                <img src={CopyIcon} alt="Copy" style={{ width: 20, height: 20 }} />
                                 Copy Email
                             </button>
                             <button className={styles.secondaryActionButton}>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="22" y1="2" x2="11" y2="13"></line>
                                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                                 </svg>
                                 Send via Outlook
                             </button>
-                            <button className={styles.primaryActionButton} style={{ marginLeft: 'auto', borderRadius: '8px' }}>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <button className={styles.saveDraftButton}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
                                     <polyline points="17 21 17 13 7 13 7 21"></polyline>
                                     <polyline points="7 3 7 8 15 8"></polyline>

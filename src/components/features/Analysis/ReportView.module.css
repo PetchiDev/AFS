@@ -423,12 +423,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px 20px;
-    height: 40px;
+    padding: 10px 24px;
+    height: 48px;
     background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 6px;
-    font-size: 14px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--color-text-primary, #212529);
     cursor: pointer;
@@ -438,7 +438,33 @@
 
 .secondaryActionButton:hover {
     background-color: #F8F9FA;
-    border-color: #CBD5E1;
+    border-color: #94A3B8;
+    color: var(--color-primary, #EE202E);
+}
+
+
+
+.saveDraftButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 24px;
+    height: 48px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--color-primary, #EE202E);
+    border: 1.5px solid var(--color-primary, #EE202E);
+    color: #FFFFFF;
+    transition: all 0.2s;
+    margin-left: auto;
+}
+
+.saveDraftButton:hover {
+    background-color: #D31623;
+    border-color: #D31623;
 }
 
 .pastMatters {

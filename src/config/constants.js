@@ -1,13 +1,14 @@
 // API Configuration
 export const API = {
-  BASE_URL: import.meta.env.VITE_API_BASE_URL || 'https://api.example.com',
+  BASE_URL: import.meta.env.VITE_API_BASE_URL || 'https://attorneymatching-api-dpecfebsb7a9ggf9.southindia-01.azurewebsites.net',
   TIMEOUT: 30000,
   ENDPOINTS: {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
     USER_PROFILE: '/user/profile',
     POSTS: '/posts',
-    COMMENTS: '/comments'
+    COMMENTS: '/comments',
+    RISK_ANALYSIS: '/api/v1/risk-analysis'
   }
 };
 

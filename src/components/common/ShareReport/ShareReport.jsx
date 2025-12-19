@@ -7,6 +7,8 @@ import Button from '@/components/common/Button';
 import CopyIcon from '@/assets/icons/Copy.svg';
 import styles from './ShareReport.module.css';
 
+import { createPortal } from 'react-dom';
+
 const ShareReport = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
 
@@ -28,7 +30,7 @@ const ShareReport = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <div className={styles.header}>
@@ -68,7 +70,8 @@ const ShareReport = ({ isOpen, onClose }) => {
             </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
